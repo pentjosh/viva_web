@@ -1,0 +1,204 @@
+2025-06-17 17:16:14,926 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-17 17:17:40,673 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-17 17:17:40,692 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-17 17:17:40,693 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-17 17:17:40,708 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-17 17:17:40,708 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-17 17:17:40,708 - app_logger - WARNING - 'NoneType' object has no attribute 'get'
+2025-06-17 17:17:40,721 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-17 17:17:40,722 - app_logger - WARNING - 'NoneType' object has no attribute 'get'
+2025-06-17 17:17:40,733 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-17 17:17:40,734 - app_logger - WARNING - 'NoneType' object has no attribute 'get'
+2025-06-17 17:36:41,384 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-17 17:36:41,386 - app_logger - WARNING - 'NoneType' object has no attribute 'get'
+2025-06-17 17:36:41,391 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-17 17:36:41,391 - app_logger - WARNING - 'NoneType' object has no attribute 'get'
+2025-06-18 07:36:39,231 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-18 07:36:39,232 - app_logger - WARNING - 'NoneType' object has no attribute 'get'
+2025-06-18 07:36:39,235 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-18 07:36:39,235 - app_logger - WARNING - 'NoneType' object has no attribute 'get'
+2025-06-18 07:40:10,759 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-18 07:40:10,760 - app_logger - WARNING - 'NoneType' object has no attribute 'get'
+2025-06-18 07:40:10,763 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-18 07:40:10,764 - app_logger - WARNING - 'NoneType' object has no attribute 'get'
+2025-06-19 13:46:14,877 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 13:46:14,878 - app_logger - WARNING - 'NoneType' object has no attribute 'get'
+2025-06-19 13:46:14,880 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 13:46:14,880 - app_logger - WARNING - 'NoneType' object has no attribute 'get'
+2025-06-19 14:10:26,868 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 14:10:26,868 - app_logger - WARNING - 'NoneType' object has no attribute 'get'
+2025-06-19 14:10:26,868 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 14:10:26,868 - app_logger - WARNING - 'NoneType' object has no attribute 'get'
+2025-06-19 18:45:47,474 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 18:45:47,728 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 18:45:47,779 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 18:47:20,219 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 18:47:20,467 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 18:47:20,530 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 18:47:21,784 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 18:47:21,791 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 18:47:22,104 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 18:47:50,832 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 18:47:51,139 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 18:47:51,144 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 18:47:53,336 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 18:47:53,589 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 18:47:53,642 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 23:39:40,869 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 23:39:44,008 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 23:39:44,319 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 23:39:44,325 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 23:39:56,683 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 23:39:56,940 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 23:39:56,988 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 23:40:02,370 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 23:40:02,376 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-19 23:40:02,686 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-20 13:40:59,450 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-20 13:40:59,708 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-20 13:40:59,758 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:47:00,350 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:47:00,604 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:47:00,665 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:47:35,910 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:47:35,916 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:47:36,235 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:47:39,781 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:47:40,091 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:47:40,096 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:48:21,053 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:48:21,323 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:48:21,372 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:49:49,073 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:49:49,333 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:49:49,382 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:50:53,045 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:50:53,305 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:50:53,353 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:51:31,802 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:51:31,807 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:51:32,117 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:51:33,740 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:51:34,054 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:51:34,060 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:52:44,065 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:52:44,311 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:52:44,372 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:54:02,046 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:54:02,309 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:54:02,356 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:54:54,127 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:54:54,376 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:54:54,442 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:54:56,790 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:54:56,797 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 15:54:57,108 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 16:58:44,073 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 16:58:44,385 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 16:58:44,388 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 16:59:21,115 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 16:59:21,376 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 16:59:21,424 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:00:31,073 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:00:31,335 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:00:31,383 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:00:37,749 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:00:37,754 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:00:38,071 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:00:58,778 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:00:59,095 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:00:59,100 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:02:16,063 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:02:16,315 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:02:16,377 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:02:37,735 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:02:37,740 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:02:38,045 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:02:38,745 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:02:39,054 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:02:39,054 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:02:53,093 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:02:53,339 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:02:53,398 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:03:57,067 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:03:57,325 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:03:57,375 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:04:03,751 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:04:03,756 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:04:04,066 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:04:30,774 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:04:31,090 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:04:31,095 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:05:17,085 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:05:17,344 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:05:17,393 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:05:28,745 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:05:28,750 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:05:29,060 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:05:37,745 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:05:38,052 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-22 17:05:38,057 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-24 01:41:22,813 - app_logger - WARNING - Instance '<Chat at 0x1f592c6f0d0>' is not persistent within this Session
+2025-06-24 02:31:48,574 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-24 02:31:48,837 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-24 02:31:48,884 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-24 19:47:44,318 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-24 19:48:26,014 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-24 19:48:26,267 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-24 19:48:26,329 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-24 19:49:50,736 - app_logger - WARNING - (builtins.TypeError) Object of type datetime is not JSON serializable
+[SQL: UPDATE chats SET meta=%(meta)s::JSONB, updated_at=%(updated_at)s WHERE chats.id = %(chats_id)s::UUID]
+[parameters: [{'meta': {'messages': [{'role': 'user', 'content': 'hai..nama saya Joko anwar.Salam  kenal', 'timestamp': '2025-06-24T12:48:53.726641Z'}, {'role': 'mo ... (567 characters truncated) ... stamp': datetime.datetime(2025, 6, 24, 12, 49, 50, 733749, tzinfo=datetime.timezone.utc)}]}, 'chats_id': UUID('dc15271d-a190-4076-b667-d1d11b8aace3')}]]
+2025-06-24 19:52:05,830 - app_logger - WARNING - (builtins.TypeError) Object of type datetime is not JSON serializable
+[SQL: UPDATE chats SET meta=%(meta)s::JSONB, updated_at=%(updated_at)s WHERE chats.id = %(chats_id)s::UUID]
+[parameters: [{'meta': {'messages': [{'role': 'user', 'content': 'hai saya  joni.salam kenal', 'timestamp': '2025-06-24T12:51:17.357528Z'}, {'role': 'model', 'conte ... (510 characters truncated) ... estamp': datetime.datetime(2025, 6, 24, 12, 52, 5, 828155, tzinfo=datetime.timezone.utc)}]}, 'chats_id': UUID('ffcad886-f62f-450c-89a8-11878fd1a29b')}]]
+2025-06-24 20:05:02,864 - app_logger - WARNING - (builtins.TypeError) Object of type datetime is not JSON serializable
+[SQL: UPDATE chats SET meta=%(meta)s::JSONB, updated_at=%(updated_at)s WHERE chats.id = %(chats_id)s::UUID]
+[parameters: [{'meta': {'messages': [{'role': 'user', 'content': 'hai saya Joko Anwar. salam  kenal', 'timestamp': '2025-06-24T13:04:08.037170Z'}, {'role': 'model', ... (495 characters truncated) ... mestamp': datetime.datetime(2025, 6, 24, 13, 5, 2, 862738, tzinfo=datetime.timezone.utc)}]}, 'chats_id': UUID('a56463fe-d141-4179-8c82-f97a4e26bbf3')}]]
+2025-06-24 20:12:58,625 - app_logger - WARNING - (builtins.TypeError) Object of type datetime is not JSON serializable
+[SQL: UPDATE chats SET meta=%(meta)s::JSONB, updated_at=%(updated_at)s WHERE chats.id = %(chats_id)s::UUID]
+[parameters: [{'meta': {'messages': [{'role': 'user', 'content': 'halo..saya joko anwar. salam kenal', 'timestamp': '2025-06-24T13:12:20.359863Z'}, {'role': 'model' ... (547 characters truncated) ... stamp': datetime.datetime(2025, 6, 24, 13, 12, 58, 625351, tzinfo=datetime.timezone.utc)}]}, 'chats_id': UUID('29827aad-602d-47fe-87e7-25808e7ca6f8')}]]
+2025-06-24 20:25:29,839 - app_logger - WARNING - (builtins.TypeError) Object of type datetime is not JSON serializable
+[SQL: UPDATE chats SET meta=%(meta)s::JSONB, updated_at=%(updated_at)s WHERE chats.id = %(chats_id)s::UUID]
+[parameters: [{'meta': {'messages': [{'role': 'user', 'content': 'hai,..nama saya joko anwar', 'timestamp': '2025-06-24T13:24:57.163308Z'}, {'role': 'model', 'conte ... (463 characters truncated) ... stamp': datetime.datetime(2025, 6, 24, 13, 25, 29, 839093, tzinfo=datetime.timezone.utc)}]}, 'chats_id': UUID('bd088ee5-e9be-4175-8fab-1fba761e432a')}]]
+2025-06-24 20:45:42,537 - app_logger - WARNING - (builtins.TypeError) Object of type datetime is not JSON serializable
+[SQL: UPDATE chats SET meta=%(meta)s::JSONB, updated_at=%(updated_at)s WHERE chats.id = %(chats_id)s::UUID]
+[parameters: [{'meta': {'messages': [{'role': 'user', 'content': 'halo, nama saya joni.', 'timestamp': '2025-06-24T13:44:44.402572Z'}, {'role': 'model', 'content':  ... (472 characters truncated) ... stamp': datetime.datetime(2025, 6, 24, 13, 45, 42, 537080, tzinfo=datetime.timezone.utc)}]}, 'chats_id': UUID('74a3cdcb-62e4-4938-bbdd-2e25ea7ab91e')}]]
+2025-06-24 23:13:15,406 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-24 23:13:31,183 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-24 23:13:31,491 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-24 23:13:31,498 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 11:41:51,852 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:16,078 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:19,848 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:20,157 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:20,157 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:20,179 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:20,470 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:20,470 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:25,164 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:25,170 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:25,176 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:25,499 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:25,740 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:25,803 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:45,936 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:45,941 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:46,251 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:46,275 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:46,505 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:53:46,560 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:55:17,635 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:55:17,895 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:55:17,943 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:55:17,943 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:55:17,953 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 12:55:18,212 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 13:00:00,033 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 13:00:00,037 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 13:00:00,053 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 13:00:00,057 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 16:59:07,621 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 17:10:00,791 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 17:10:01,060 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-06-26 17:10:02,127 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
