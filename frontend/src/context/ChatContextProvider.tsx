@@ -1,7 +1,7 @@
-import React, { useState, useRef, ReactNode, useEffect } from "react";
+import React, { useState, useRef, ReactNode, useCallback, useEffect } from "react";
 import { toast } from 'react-toastify';
-import { ChatList, ChatMessage, ChatModel  } from "../api/chats/types";
-import { generateChat, getChatHistory }  from "../api/chats/chats";
+import { ChatHistorySummary, ChatList } from "../api/chats/types";
+import { generateChat, getChatHistory, getChatById, page_size, deleteChatById }  from "../api/chats/chats";
 import ChatContext from "./ChatContext";
 import { useAuth } from '../components/hooks/useAuth';
 
@@ -11,8 +11,31 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
     const [isTyping, setIsTyping] = useState(false);
     const [streamedMessage, setStreamedMessage] = useState('');
     const typingInterval = useRef<number | null>(null);
-    const [chatHistory, setChatHistory] = useState<ChatModel[]>([]);
     const { isLoggedIn } = useAuth();
+    const [chatHistory, setChatHistory] = useState<ChatHistorySummary[]>([]);
+    const [chatHistoryPage, setChatHistoryPage ] = useState(1);
+    const [hasMoreHistory, setHasMoreHistory] = useState(true);
+    const [isHistoryLoading, setIsHistoryLoading] = useState(false);
+
+    const deleteChat = async(chatIdToDelete: string) => {
+        const previousChatHistory = chatHistory;
+        setChatHistory(prevChatHistory => prevChatHistory.filter(chat => chat.id !== chatIdToDelete));
+        if (chatID === chatIdToDelete) {
+            startNewChat();
+        };
+        try{
+            const deleted_chat = await deleteChatById(chatIdToDelete);
+            if (!deleted_chat) {
+                throw new Error("Server indicated failure to delete.");
+            }
+            toast.success("Chat deleted successfully!");
+        }
+        catch(error){
+            setChatHistory(previousChatHistory);
+            const errorMessage = error instanceof Error ? error.message : "An unknown error occurred.";
+            toast.error(errorMessage);
+        }
+    };
 
     const startNewChat = () => {
         setChatID(null);
@@ -24,31 +47,70 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
         setIsTyping(false);
     };
 
-    useEffect(() => {
-        const fetchHistory = async () => {
-            try {
-                const historyData = await getChatHistory();
-                setChatHistory(historyData || []);
-            } catch (error) {
-                const errorMessage = error instanceof Error ? error.message : "Failed to load chat history.";
-                throw Error(errorMessage);
-            }
-        };
+    const loadMoreChatHistory = useCallback(async () => {
+        if (isHistoryLoading || !hasMoreHistory) return;
 
+        setIsHistoryLoading(true);
+        try {
+            const historyData = await getChatHistory(chatHistoryPage);
+            setChatHistory(prev => [...prev, ...historyData]);
+            if (historyData.length < page_size) {
+                setHasMoreHistory(false);
+            } else {
+                setChatHistoryPage(prevPage => prevPage + 1);
+            }
+        } catch {
+            toast.error("Failed to load chat history.");
+        } finally {
+            setIsHistoryLoading(false);
+        }
+    }, [isHistoryLoading, hasMoreHistory, chatHistoryPage]);
+
+    useEffect(() => {
         if(isLoggedIn()){
-            fetchHistory();
+            const initialFetchChatHistory = async() => {
+                setIsHistoryLoading(true);
+                setChatHistory([]);
+                setHasMoreHistory(true);
+                try{
+                    const initData = await getChatHistory(1);
+                    setChatHistory(initData);
+                    if(initData.length < page_size){
+                        setHasMoreHistory(false);
+                    }
+                    setChatHistoryPage(2);
+                }
+                catch{
+                    toast.error("Failed to initial load chat history.");
+                }
+                finally{
+                    setIsHistoryLoading(false);
+                }
+            
+            }
+            initialFetchChatHistory();
         }
         else{
             setChatHistory([]);
+            setChatHistoryPage(1);
+            setHasMoreHistory(true);
         }
     }, [isLoggedIn]);
 
-    const loadChat = (chatId: string) => {
-        const selectedChat = chatHistory.find(chat => chat.id === chatId);
-        if (selectedChat) {
+    const loadChat = async (chatId: string) => {
+        if(chatId === chatID) return;
+        //setIsTyping(true);
+        setStreamedMessage('');
+
+        try{
+            const selectedChat = await getChatById(chatId);
             setChatID(selectedChat.id);
-            setChatList(selectedChat.messages.map((msg: ChatMessage) => ({ role: msg.role, message: msg.content })));
-            setStreamedMessage('');
+            setChatList(selectedChat.messages.map(msg => ({ role: msg.role, message: msg.content })));
+        }
+        catch{
+            toast.error("Failed to load chat.");
+        }
+        finally{
             setIsTyping(false);
         }
     };
@@ -73,7 +135,8 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
                 setChatID(response.id);
 
                 if (isNewChat) {
-                    setChatHistory(prevHistory => [response, ...prevHistory]);
+                    const summary: ChatHistorySummary = { id:response.id, title: response.title};
+                    setChatHistory(prevHistory => [summary, ...prevHistory]);
                 }
 
                 const botMessageContent = response.messages[response.messages.length - 1].content;
@@ -110,6 +173,10 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
         chatHistory,
         loadChat,
         chatID,
+        hasMoreHistory,
+        isHistoryLoading,
+        loadMoreChatHistory,
+        deleteChat
     };
 
     return (

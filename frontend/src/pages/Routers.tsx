@@ -13,6 +13,7 @@ export const Routers = createBrowserRouter([
             {path:"login", element:<LoginPage />},
             {index: true, element:<ProtectedRoute><ChatPage /></ProtectedRoute>},
             {path:"query", element:<ProtectedRoute><DataQuery /></ProtectedRoute>},
+            {path:"chat/:chatId", element:<ProtectedRoute><ChatPage /></ProtectedRoute>}
         ]
     }
 ]);

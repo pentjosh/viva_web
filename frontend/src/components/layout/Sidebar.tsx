@@ -1,8 +1,9 @@
-import { PanelLeftClose, MessageCircle, MessageSquareCode } from "lucide-react";
+import { PanelLeftClose, MessageCircle, MessageSquareCode, Loader } from "lucide-react";
 import useLogo from "../hooks/useLogo";
 import { Link, useNavigate } from "react-router-dom";
 import ChatItemHistory from "../ui/ChatItemHistory"; 
 import { useChat } from "../hooks/useChat";
+import { useCallback, useRef } from "react";
 
 interface SidebarProps {
     isSideBarOpen: boolean;
@@ -12,14 +13,26 @@ interface SidebarProps {
 const Sidebar = ({isSideBarOpen, onToggle} : SidebarProps) => {
     const navigate = useNavigate();
     const logo = useLogo();
-    const { chatHistory, loadChat, chatID, startNewChat } = useChat();
+    const { chatHistory, loadChat, chatID, startNewChat, hasMoreHistory, isHistoryLoading, loadMoreChatHistory, deleteChat } = useChat();
     const menuItems = [
-    { key:0, name: "Chat Me", to: "/", icon: <MessageCircle />, action: startNewChat },
-    { key:2, name: "Data Query", to: "/query" , icon: <MessageSquareCode /> },
+        { key:0, name: "Chat Me", to: "/", icon: <MessageCircle />, action: startNewChat },
+        { key:2, name: "Data Query", to: "/query" , icon: <MessageSquareCode /> },
     ];
 
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    const handleScrollerContainer = useCallback(()=>{
+        const container = scrollContainerRef.current;
+        if(container){
+            const { scrollTop, scrollHeight, clientHeight } = container;
+            if (scrollHeight - scrollTop - clientHeight < 200 && !isHistoryLoading && hasMoreHistory) {
+                loadMoreChatHistory();
+            }
+        }
+    },[isHistoryLoading, hasMoreHistory, loadMoreChatHistory]);
+
     const handleLoadChat = (chatId: string)=>{
-        navigate("/");
+        navigate(`/chat/${chatId}`);
         loadChat(chatId)
     }
 
@@ -36,7 +49,8 @@ const Sidebar = ({isSideBarOpen, onToggle} : SidebarProps) => {
                     <PanelLeftClose />
                 </button>
             </div>
-            <div className="px-3 py-4">
+
+            <div className="flex-shrink-0 px-3 py-4">
                 <ul className="space-y-1">
                 {menuItems.map((item, index) => (
                     <li key={index}>
@@ -59,21 +73,31 @@ const Sidebar = ({isSideBarOpen, onToggle} : SidebarProps) => {
                 ))}
                </ul>
             </div>
+            
             {chatHistory.length > 0 && (
-            <div className="mt-4 px-3">
-                <h2 className="px-4 text-xs">Recent Chats</h2>
-                <ul className="space-y-2 mt-2">
-                    <li className="space-y-1">
+            <div className="flex flex-col flex-grow min-h-0 px-2 pb-4">
+                <h2 className="px-4 text-xs flex-shrink-0">Recent Chats</h2>
+                <div className="flex-grow overflow-y-auto mt-2"
+                    ref={scrollContainerRef} onScroll={handleScrollerContainer}>
+                    <ul className="space-y-1">
                         {chatHistory.map((chat) => (
+                            <li key={chat.id}>
                             <ChatItemHistory
-                                key={chat.id}
+                                id={chat.id}
                                 title={chat.title}
                                 isActive={chat.id === chatID}
                                 onClick={() => handleLoadChat(chat.id)}
+                                onDelete={deleteChat}
                             />
+                            </li>
                         ))}
-                    </li>
-                </ul>
+                    </ul>
+                    {isHistoryLoading && (
+                        <div className="flex justify-center items-center p-2">
+                            <Loader className="h-5 w-5 animate-spin text-gray-400" />
+                        </div>
+                    )}
+                </div>
             </div>)}
         </div>
     </div>

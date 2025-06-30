@@ -7,7 +7,7 @@ from sqlalchemy.dialects.postgresql import UUID, JSONB;
 from sqlalchemy.orm import relationship;
 import uuid;
 from datetime import datetime, timezone;
-from typing import Optional, Union;
+from typing import Optional, Union, TypedDict;
 
 class Chat(Base):
     __tablename__ = "chats";
@@ -50,3 +50,17 @@ class ChatRequest(BaseModel):
     content: str = Field(..., min_length=1);
     chat_id: Optional[uuid.UUID] = None;
     
+class ChatSummary(BaseModel):
+    id: uuid.UUID;
+    title: str;
+    
+class GraphRouterModel(BaseModel):
+    category: Optional[Literal["rag_report_query", "rag_policy_query", "general_query"]] = None;
+    should_continue: bool;
+    final_answer: Optional[str] = None;
+
+class GraphState(TypedDict):
+    prompt: str;
+    history: List[dict];
+    category: Optional[Literal["rag_report_query", "rag_policy_query", "general_query"]];
+    final_answer: Optional[str];

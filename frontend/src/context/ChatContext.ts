@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ChatList, ChatModel } from "../api/chats/types";
+import { ChatList, ChatHistorySummary } from "../api/chats/types";
 
 // export interface ChatContextType {
 //     prevPrompts: string[];
@@ -22,9 +22,13 @@ export interface ChatContextType {
     streamedMessage: string;
     sendMessage: (message: string) => Promise<void>;
     startNewChat: () => void;
-    chatHistory: ChatModel[];
+    chatHistory: ChatHistorySummary[];
     loadChat: (chatId: string) => void;
     chatID: string | null;
+    hasMoreHistory: boolean;
+    isHistoryLoading: boolean;
+    loadMoreChatHistory: () => Promise<void>;
+    deleteChat: (chatId: string) => Promise<void>;
 }
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);

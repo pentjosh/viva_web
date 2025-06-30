@@ -1,9 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException, status;
-from models.chats import ( ChatRequest, ChatModel );
+from fastapi import APIRouter, Depends, HTTPException, status, Query;
+from models.chats import ( ChatRequest, ChatModel, ChatSummary );
 from services.auths import ( get_current_user );
-from services.chats import ( chat_handler, get_chats_by_user_id );
+from services.chats import ( chat_handler, get_all_chats_by_user_id, get_chat_by_id, delete_chat_by_id );
 from typing import List;
 from utils.constants import ERROR_MESSAGES;
+import uuid;
 
 router = APIRouter();
 
@@ -16,22 +17,29 @@ async def generate_chat(request: ChatRequest, user = Depends(get_current_user)) 
         raise HTTPException(status_code=500, detail="An error occurred while processing your request.");
     return chat;
 
-@router.get("/chat/history", response_model=List[ChatModel])
-async def get_user_chat_history(user = Depends(get_current_user)) -> List[ChatModel]:
-
-    history = get_chats_by_user_id(user.id);
-    
+@router.get("/chat/summary", response_model=List[ChatSummary])
+async def get_user_chat_history(skip:int = Query(0, ge=0),limit:int = Query(5, ge=1),user = Depends(get_current_user)) -> List[ChatSummary]:
+    history = get_all_chats_by_user_id(user.id, skip=skip, limit=limit);
     if history is None:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail=ERROR_MESSAGES.NOT_FOUND,
             headers={"WWW-Authenticate": "Bearer"},
         );
-
     return history;
 
-# @router.get("/chat/history", response_model=List[ChatHistory])
-# async def get_user_chat_history(user = Depends(get_current_user)):
-#     with get_db_context() as db:
-#         chats = db.query(Chat).filter_by(user_id=user.id,archived=False).order_by(Chat.updated_at.desc()).all();
-#         return chats;
+@router.get("/chat/{chat_id}", response_model=ChatModel)
+async def get_user_chat_by_id(chat_id: uuid.UUID, user = Depends(get_current_user)) -> ChatModel:
+    chat = get_chat_by_id(chat_id=chat_id, user_id=user.id);
+    if not chat:
+        print(f"Mencari chat untuk user ID dari token: {user.id}");
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=ERROR_MESSAGES.NOT_FOUND,
+            headers={"WWW-Authenticate": "Bearer"},
+        );
+    return chat;
+
+@router.delete("/chat/delete/{chat_id}", response_model=bool)
+async def delete_user_chat_by_id(chat_id: uuid.UUID, user = Depends(get_current_user)) -> bool:
+    return delete_chat_by_id(chat_id=chat_id, user_id=user.id);

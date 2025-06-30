@@ -19,3 +19,8 @@ export type ChatList = {
     role: 'user' | 'model';
     message: string;
 };
+
+export type ChatHistorySummary = {
+    id: string;
+    title: string;
+};
