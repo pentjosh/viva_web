@@ -8,6 +8,7 @@ class ERROR_MESSAGES(str, Enum):
     USER_NOT_FOUND = "User not found. Please contact administrator."
     INVALID_REFRESH_TOKEN = "Refresh token is invalid or has expired. Please sign in again."
     NOT_FOUND = "Resources not found."
+    FILE_EXISTS = "File already exists. Please upload different file."
     
     @staticmethod
     def DEFAULT(err: str = "") -> str:

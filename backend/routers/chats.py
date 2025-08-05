@@ -32,7 +32,6 @@ async def get_user_chat_history(skip:int = Query(0, ge=0),limit:int = Query(5, g
 async def get_user_chat_by_id(chat_id: uuid.UUID, user = Depends(get_current_user)) -> ChatModel:
     chat = get_chat_by_id(chat_id=chat_id, user_id=user.id);
     if not chat:
-        print(f"Mencari chat untuk user ID dari token: {user.id}");
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=ERROR_MESSAGES.NOT_FOUND,

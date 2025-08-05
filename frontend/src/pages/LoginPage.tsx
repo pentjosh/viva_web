@@ -1,5 +1,5 @@
 import InputText from '../components/ui/InputText';
-import Button from '../components/ui/Buttons';
+import Button from '../components/ui/Button';
 const currYear = new Date().getFullYear();
 import { useAuth } from '../components/hooks/useAuth';
 import { FormEvent, useEffect, useState } from 'react';
@@ -59,7 +59,7 @@ const LoginPage = () => {
                                     <InputText id="password" label="Password" type="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
                                 </div>
                                 <div className="relative">
-                                    <Button label="Login" className="w-20" type="submit" />
+                                    <Button className="w-20" type="submit">Login</Button>
                                 </div>
                             </div>
                         </div>

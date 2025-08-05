@@ -11036,3 +11036,7 @@ LINE 3:             FROM embedding_doc_ai
 LINE 2:             SELECT doc_chunk_metadata
                            ^
 
+2025-07-25 15:48:02,640 - app_logger - ERROR - Failed to delete file with id = b84b640f-7d86-4e2f-8fb7-20c21f7d5de8
+2025-07-25 15:50:06,793 - app_logger - ERROR - Failed to delete file with id = b84b640f-7d86-4e2f-8fb7-20c21f7d5de8
+2025-07-25 15:52:05,863 - app_logger - ERROR - Failed to delete file with id = b84b640f-7d86-4e2f-8fb7-20c21f7d5de8
+2025-07-25 15:54:08,976 - app_logger - ERROR - Failed to delete file with id = b84b640f-7d86-4e2f-8fb7-20c21f7d5de8

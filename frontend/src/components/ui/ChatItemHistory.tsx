@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { EllipsisVertical, Trash2, SquarePen } from 'lucide-react';
 import Portal from '../ui/Portal';
-import Button from './Buttons';
+import Button from './Button';
 
 interface ChatItemProps {
     id: string;
@@ -18,7 +18,7 @@ const ChatItemHistory = ({id, title, isActive, onClick, onDelete}:ChatItemProps)
     const menuRef = useRef<HTMLUListElement>(null);
     const deleteChatRef = useRef<HTMLDialogElement>(null);
 
-    const toggleMenu = (e: React.MouseEvent) => {
+    const toggleMenuChatHistoryItem = (e: React.MouseEvent) => {
         e.stopPropagation();
         
         if (menuButtonRef.current) {
@@ -49,7 +49,6 @@ const ChatItemHistory = ({id, title, isActive, onClick, onDelete}:ChatItemProps)
     const handleRemoveChat = (e: React.MouseEvent) => {
         e.preventDefault();
         if (!id) {
-            console.error("Attempted to call onDelete but ID is invalid:", id);
             return;
         }
         setIsMenuOpen(false);
@@ -73,13 +72,13 @@ const ChatItemHistory = ({id, title, isActive, onClick, onDelete}:ChatItemProps)
             <div role="button" onClick={onClick} className={`flex items-center justify-between btn btn-ghost rounded-3xl w-full text-sm ${isActive ? 'btn-active' : ''} group font-medium`}>
                 <span className="truncate">{title}</span>
 
-                <div ref={menuButtonRef} role="button" onClick={toggleMenu} className="rounded-full hover:bg-base-200 p-1 flex
+                <div ref={menuButtonRef} role="button" onClick={toggleMenuChatHistoryItem} className="rounded-full hover:bg-base-200 p-1 flex
                 items-center justify-center invisible group-hover:visible">
                     <EllipsisVertical size={18} />
                 </div>
 
                 {isMenuOpen && (
-                <Portal>
+                <Portal target="chat-item">
                     <div className="dropdown-menu-portal" style={menuPosition}>
                         <ul ref={menuRef} tabIndex={0} className="menu bg-base-200 rounded-lg z-[999] w-44 p-2 shadow-lg gap-1">
                             <li><a><span><SquarePen size={16} /></span>Rename</a></li>
@@ -93,15 +92,15 @@ const ChatItemHistory = ({id, title, isActive, onClick, onDelete}:ChatItemProps)
         </div>
         
         {/* Modal for delete chat confirmation */}
-        <dialog id="deletChatModal" className="modal" ref={deleteChatRef}>
+        <dialog id="deleteChatModal" className="modal" ref={deleteChatRef}>
             <div className="modal-box w-11/12 max-w-md">
                 <h3 className="text-md font-bold">Delete Chat?</h3>
                 <p className="py-4">Are you sure to delete this chat?</p>
                 <div className="modal-action">
                 <form method="dialog">
                     <div className="flex flex-row gap-2">
-                        <Button label="Cancel" onClick={handleCancelRemoveChat} />
-                        <Button label="OK" className="btn btn-error w-20" type="submit" onClick={handleRemoveChat}>OK</Button>
+                        <Button onClick={handleCancelRemoveChat}>Cancel</Button>
+                        <Button className="btn btn-error w-20" type="submit" onClick={handleRemoveChat}>OK</Button>
                     </div>
                 </form>
                 </div>

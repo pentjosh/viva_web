@@ -10,7 +10,7 @@ import uuid;
 
 class User(Base):
     __tablename__ = "user";
-    id = Column(UUID(as_uuid=True), ForeignKey("auth.id", ondelete="CASCADE"), primary_key=True, default=uuid.uuid4);
+    id = Column(UUID(as_uuid=True), ForeignKey("auths.id", ondelete="CASCADE"), primary_key=True, default=uuid.uuid4);
     first_name = Column(String);
     last_name = Column(String, nullable=True);
     role = Column(BigInteger);

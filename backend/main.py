@@ -5,12 +5,13 @@ from utils.init_db import init_db;
 from utils.routers_loader import load_routers;
 import os;
 from pathlib import Path;
-from utils.env import BASE_DIR, LOG_DIR;
+from utils.env import BASE_DIR, LOG_DIR, MEDIA_DIR;
 
 def lifespan(app:FastAPI):
     init_db();
     
     os.makedirs(LOG_DIR, exist_ok=True);
+    os.makedirs(MEDIA_DIR, exist_ok=True);
     yield
     
 app = FastAPI(lifespan=lifespan);

@@ -35,20 +35,7 @@ def insert_new_role(name:str):
         db.add(role);
         db.commit();
         db.refresh(role);
-        
-# def insert_new_user(db, id:str, first_name:str, last_name:str, role:int):
-#     with get_db_context() as db:
-#         user = User(**{
-#             "id": id,
-#             "first_name": first_name,
-#             "last_name": last_name,
-#             "role": role,
-#             "created_at": datetime.now()
-#             });
-#         db.add(user);
-#         db.commit();
-#         db.refresh(user);
-        
+
 def create_new_user(email, password, first_name:str, last_name:str, role:int) :
     with get_db_context() as db:
         

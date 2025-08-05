@@ -1,5 +1,4 @@
-from pydantic import BaseModel, Field;
-from pydantic import ConfigDict;
+from pydantic import BaseModel, Field, ConfigDict;
 from utils.db import Base;
 from typing import Literal, List;
 from sqlalchemy import Column, String, Text, DateTime, Boolean, ForeignKey;
@@ -12,11 +11,11 @@ from typing import Optional, Union, TypedDict;
 class Chat(Base):
     __tablename__ = "chats";
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4);
-    user_id = Column(UUID(as_uuid=True), ForeignKey("auth.id", ondelete="CASCADE"));
+    user_id = Column(UUID(as_uuid=True), ForeignKey("auths.id", ondelete="CASCADE"));
     title = Column(Text);
     meta = Column(JSONB);
     created_at = Column(DateTime(timezone=True), nullable=False, default=lambda: datetime.now(timezone.utc));
-    updated_at = Column(DateTime(timezone=True), nullable=True, onupdate=lambda: datetime.now(timezone.utc));
+    updated_at = Column(DateTime(timezone=True), nullable=False, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc));
     archived = Column(Boolean, default=False);
     pinned = Column(Boolean, default=False, nullable=True);
     

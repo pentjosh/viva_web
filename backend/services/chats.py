@@ -24,7 +24,7 @@ from langgraph.graph import StateGraph, END;
 from services.rags import ( get_embed_text, retrieve_context_from_db );
 
 config = GenerationConfig(temperature=0.2);
-credentials = service_account.Credentials.from_service_account_file(GOOGLE_VERTEX_CREDENTIAL)
+credentials = service_account.Credentials.from_service_account_file(GOOGLE_VERTEX_CREDENTIAL);
 vertexai.init(credentials=credentials, project=GOOGLE_PROJECT_ID, location=GOOGLE_VERTEX_LOCATION);
 
 # system_prompt = ["""

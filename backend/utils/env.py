@@ -6,6 +6,7 @@ import json;
 
 BASE_DIR = ((Path(__file__).parent).parent);
 LOG_DIR = BASE_DIR / "logs";
+MEDIA_DIR = BASE_DIR / "media";
 
 try:
     load_dotenv(find_dotenv(str(BASE_DIR / ".env")));
