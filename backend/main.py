@@ -6,13 +6,18 @@ from utils.routers_loader import load_routers;
 import os;
 from pathlib import Path;
 from utils.env import BASE_DIR, LOG_DIR, MEDIA_DIR;
+from contextlib import asynccontextmanager;
+from utils.scheduler  import scheduler;
 
-def lifespan(app:FastAPI):
+@asynccontextmanager
+async def lifespan(app:FastAPI):
     init_db();
     
     os.makedirs(LOG_DIR, exist_ok=True);
     os.makedirs(MEDIA_DIR, exist_ok=True);
+    scheduler.start();
     yield
+    scheduler.shutdown();
     
 app = FastAPI(lifespan=lifespan);
 

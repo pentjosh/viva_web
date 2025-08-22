@@ -90,3 +90,7 @@ pre, pre code {
   word-break: break-word !important;
   overflow-x: auto;
 }
+
+.Toastify__toast {
+  width: fit-content !important;
+}

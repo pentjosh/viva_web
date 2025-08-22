@@ -17,9 +17,9 @@ const Layout = ({ children } : LayoutDefaultProps) => {
     <>
     <div className="flex h-screen w-screen overflow-x-hidden">
         <Sidebar isSideBarOpen={isOpen} onToggle={toggleSidebar} />
-        <div className="flex flex-1 flex-col overflow-hidden">
+        <div className="flex flex-1 flex-col">
             <Header isSideBarOpen={isOpen} onToggle={toggleSidebar} />
-            <main className="flex-1 overflow-hidden p-4">
+            <main className="flex-1 overflow-auto p-4">
                 {children}
             </main>
         </div>

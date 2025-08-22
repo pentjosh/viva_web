@@ -3,7 +3,6 @@ import { AuthContextProvider } from './context/AuthContextProvider';
 import { ChatContextProvider } from './context/ChatContextProvider';
 import { Outlet } from 'react-router-dom';
 import { ToastContainer, Slide } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 export default function App() {
@@ -14,7 +13,7 @@ export default function App() {
             <Outlet />
           </ChatContextProvider>
         </AuthContextProvider>
-        <ToastContainer autoClose={1500} pauseOnHover={false} transition={Slide} position="top-center"
+        <ToastContainer autoClose={1000} pauseOnHover={false} transition={Slide} position="top-center"
           style={{ fontSize: '14px' }} />
       </>
   )

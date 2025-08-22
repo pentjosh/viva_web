@@ -57,10 +57,10 @@ const Sidebar = ({isSideBarOpen, onToggle} : SidebarProps) => {
                         {item.action ? (
                             <Link onClick={startNewChat} to={item.to} className="flex justify-start btn btn-ghost rounded-3xl group">
                                 {item.icon}
-                            <span className="ms-3">
-                                {item.name}
-                            </span>
-                        </Link>
+                                <span className="ms-3">
+                                    {item.name}
+                                </span>
+                            </Link>
                         ):
                         
                         (<Link to={item.to} className="flex justify-start btn btn-ghost rounded-3xl group">

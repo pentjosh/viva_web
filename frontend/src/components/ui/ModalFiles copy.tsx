@@ -45,7 +45,6 @@ const ModalFiles = ({ isOpen, onClose }:ModalFilesProps)=> {
         }
     },[]);
 
-
     useEffect(() => {
         if (isOpen) {
             fetchFiles();

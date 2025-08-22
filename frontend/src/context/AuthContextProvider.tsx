@@ -1,7 +1,8 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { signIn, getSession, signOut, UserSession } from '../api/auths/auths';
+import { signIn, getSession, signOut } from '../api/auths/auths';
+import { UserSession } from '../api/auths/types';
 import { useAppNavigate  } from '../components/hooks/useAppNavigate';
 
 interface AuthContextProviderProps {

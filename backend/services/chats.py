@@ -23,9 +23,9 @@ from sqlalchemy.orm.attributes import flag_modified;
 from langgraph.graph import StateGraph, END;
 from services.rags import ( get_embed_text, retrieve_context_from_db );
 
-config = GenerationConfig(temperature=0.2);
-credentials = service_account.Credentials.from_service_account_file(GOOGLE_VERTEX_CREDENTIAL);
-vertexai.init(credentials=credentials, project=GOOGLE_PROJECT_ID, location=GOOGLE_VERTEX_LOCATION);
+# config = GenerationConfig(temperature=0.2);
+# credentials = service_account.Credentials.from_service_account_file(GOOGLE_VERTEX_CREDENTIAL);
+# vertexai.init(credentials=credentials, project=GOOGLE_PROJECT_ID, location=GOOGLE_VERTEX_LOCATION);
 
 # system_prompt = ["""
 # Your role is to serve as an informative and helpful AI assistant, with a strict and non-negotiable limitation:
@@ -78,7 +78,7 @@ SAFETY_SETTINGS = [
 
 #system_instructions_content = [Content(role='model', parts=[Part.from_text(text)]) for text in system_prompt];
 
-generator_model = GenerativeModel(model_name=GOOGLE_CHAT_MODEL, generation_config=config, safety_settings=SAFETY_SETTINGS);
+# generator_model = GenerativeModel(model_name=GOOGLE_CHAT_MODEL, generation_config=config, safety_settings=SAFETY_SETTINGS);
    
 def generate_chat_title(messages: list)-> str:
     history = "\n".join(f"{m['role'].capitalize()}: {m['content']}" for m in messages[:5]);

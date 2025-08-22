@@ -5,7 +5,7 @@ import useTheme from '../hooks/useTheme';
 import { useAuth } from '../hooks/useAuth';
 import { useState } from 'react';
 import ModalLogout from '../ui/ModalLogout';
-import ModalFiles from '../ui/ModalFiles';
+import { Link } from 'react-router-dom';
 
 interface HeaderProps {
     isSideBarOpen: boolean;
@@ -17,7 +17,7 @@ const Header = ({isSideBarOpen, onToggle}:HeaderProps) => {
     const { theme, toggleTheme } = useTheme();
     const { logout } = useAuth();
     const [isModalLogoutOpen,setIsModalLogoutOpen] = useState(false);
-    const [isModalFilesOpen,setIsModalFilesOpen] = useState(false);
+    // const [isModalFilesOpen,setIsModalFilesOpen] = useState(false);
 
     const handleLogout = ()=>{
         logout();
@@ -41,9 +41,8 @@ const Header = ({isSideBarOpen, onToggle}:HeaderProps) => {
             </div>
             <div className="flex items-center gap-2">
                 <div className="flex">
-                    <button className="btn btn-ghost btn-circle">
-                        { theme === 'red-dark' ? <Sun onClick={ toggleTheme } size={24} /> : 
-                        <SunMoon onClick={ toggleTheme } size={24} /> }
+                    <button className="btn btn-ghost btn-circle" onClick={ toggleTheme }>
+                        { theme === 'red-dark' ? <Sun size={24} /> : <SunMoon size={24} /> }
                     </button>
                 </div>
                 <div className="flex">
@@ -54,7 +53,7 @@ const Header = ({isSideBarOpen, onToggle}:HeaderProps) => {
                             </div>
                         </div>
                         <ul tabIndex={0} className="menu dropdown-content bg-base-200 rounded-lg z-1 mt-3 w-52 p-2 shadow">
-                            <li onClick={()=>setIsModalFilesOpen(true)}><a><span><BookOpen size={16} /></span>My Files</a></li>
+                            <li><Link to="/myfiles"><span><BookOpen size={16} /></span>My Files</Link></li>
                             <li><a><span><Bolt size={16} /></span>Settings</a></li>
                             <li onClick={()=>setIsModalLogoutOpen(true)}><a><span><LogOut size={16} /></span>Logout</a></li>
                         </ul>
@@ -64,7 +63,7 @@ const Header = ({isSideBarOpen, onToggle}:HeaderProps) => {
         </header>
         
         <ModalLogout isOpen={isModalLogoutOpen} onClose={()=>setIsModalLogoutOpen(false)} onConfirm={handleLogout} />
-        <ModalFiles isOpen={isModalFilesOpen} onClose={()=>setIsModalFilesOpen(false)} />
+        {/* <ModalFiles isOpen={isModalFilesOpen} onClose={()=>setIsModalFilesOpen(false)} /> */}
     </>
     )
 }

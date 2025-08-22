@@ -1,12 +1,13 @@
 from pydantic import BaseModel, Field, ConfigDict;
-from sqlalchemy import Column, String, Text, DateTime, Boolean, ForeignKey, Integer;
+from sqlalchemy import Column, String, Text, DateTime, Boolean, ForeignKey, Integer, Enum;
 from sqlalchemy.dialects.postgresql import UUID, JSONB;
 from sqlalchemy.orm import relationship;
 from utils.db import Base;
 import uuid;
 from datetime import datetime, timezone;
-from typing import Optional;
+from typing import Optional, List;
 from pgvector.sqlalchemy import Vector;
+import enum;
 
 class Files(Base):
     __tablename__ = "files";
@@ -14,7 +15,7 @@ class Files(Base):
     user_id = Column(UUID(as_uuid=True), ForeignKey("auths.id", ondelete="CASCADE"));
     name = Column(String, nullable=False);
     hash = Column(String, unique=True, nullable=False);
-    type = Column(String);
+    extension = Column(String);
     size = Column(Integer);
     status = Column(String);
     created_at = Column(DateTime(timezone=True), nullable=False, default=lambda: datetime.now(timezone.utc));
@@ -28,19 +29,34 @@ class FilesModel(BaseModel):
     user_id : uuid.UUID;
     name : str;
     hash : str | None;
-    type : str;
+    extension : str;
     size: int;
-    status : str;
+    status : Optional[str] = None;
     created_at : datetime=None;
     updated_at : datetime=None;
     
-class FilesEmbedding(Base):
-    __tablename__ = "files_embedding";
+class ContentType(enum.Enum):
+    TEXT = "TEXT";
+    JSON = "JSON";
+    
+class FilesEmbedded(Base):
+    __tablename__ = "files_embedded";
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4);
     files_id = Column(UUID(as_uuid=True), ForeignKey("files.id", ondelete="CASCADE"));
     user_id = Column(UUID(as_uuid=True), ForeignKey("auths.id", ondelete="CASCADE"));
-    chunks = Column(String);
+    content = Column(Text, nullable=False);
     vector = Column(Vector(3072));
+    content_type = Column(Enum(ContentType), nullable=False);
     created_at = Column(DateTime(timezone=True), nullable=False, default=lambda: datetime.now(timezone.utc));
     updated_at = Column(DateTime(timezone=True), nullable=False, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc));
-    
+
+class FilesEmbeddedModel(BaseModel):
+    model_config = ConfigDict(from_attributes=True);
+    id: uuid.UUID;
+    files_id: uuid.UUID;
+    user_id: uuid.UUID;
+    content: str;
+    vector: List[float];
+    content_type: ContentType;
+    created_at: datetime = None;
+    updated_at: datetime = None;
