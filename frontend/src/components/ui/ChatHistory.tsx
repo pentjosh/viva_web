@@ -22,7 +22,7 @@ export const ChatHistory = React.forwardRef<HTMLDivElement, ChatHistoryProps>(({
                     <div className="flex flex-col space-y-2">
                         {chatList.map((item, idx) =>
                             item.role === 'user' ? (
-                                <UserChatBubble key={idx} message={item.message} />
+                                <UserChatBubble key={idx} message={item.message} files={item.files} />
                             ) : (
                                 <BotChatBubble key={idx} message={item.message} />
                             )

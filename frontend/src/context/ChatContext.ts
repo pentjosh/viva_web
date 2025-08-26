@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { ChatList, ChatHistorySummary } from "../api/chats/types";
+import { FileType } from "../api/files/types";
 
 // export interface ChatContextType {
 //     prevPrompts: string[];
@@ -20,7 +21,7 @@ export interface ChatContextType {
     chatList: ChatList[];
     isTyping: boolean;
     streamedMessage: string;
-    sendMessage: (message: string) => Promise<void>;
+    sendMessage: (message: string, file: FileType[]) => Promise<void>;
     startNewChat: () => void;
     chatHistory: ChatHistorySummary[];
     loadChat: (chatId: string) => void;

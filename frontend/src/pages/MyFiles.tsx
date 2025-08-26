@@ -162,7 +162,7 @@ const MyFiles = ()=>{
                                                     </div>
                                                 </div>
                                                 <div className="flex flex-col flex-1 min-w-0">
-                                                    <div className="relative font-semibold ps-3 inline-flex text-base-content/90 truncate">
+                                                    <div className="relative text-sm font-semibold ps-3 inline-flex text-base-content/90 truncate">
                                                         <span className="truncate">{name}</span>
                                                         <span className="flex-shrink-0">.{extension}</span>
                                                     </div>

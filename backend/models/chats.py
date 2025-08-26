@@ -7,6 +7,7 @@ from sqlalchemy.orm import relationship;
 import uuid;
 from datetime import datetime, timezone;
 from typing import Optional, Union, TypedDict;
+from models.files import FilesModel;
 
 class Chat(Base):
     __tablename__ = "chats";
@@ -31,13 +32,20 @@ class Chat(Base):
 class ChatMessage(BaseModel):
     role: Literal['user','model'];
     content: str;
+    files: Optional[List[uuid.UUID]] = Field(default_factory=list);
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc));
     
-class ChatModel(BaseModel):
+class ChatMessageResponse(BaseModel):
+    role: Literal['user','model'];
+    content: str;
+    files: Optional[List[FilesModel]] = Field(default_factory=list);
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc));
+    
+class ChatResponse(BaseModel):
     id: uuid.UUID;
     user_id: uuid.UUID;
     title: str;
-    messages: List[ChatMessage];
+    messages: List[ChatMessageResponse];
     created_at: Optional[datetime] = None;
     updated_at: Optional[datetime] = None;
     archived: bool=False;
@@ -48,6 +56,7 @@ class ChatModel(BaseModel):
 class ChatRequest(BaseModel):
     content: str = Field(..., min_length=1);
     chat_id: Optional[uuid.UUID] = None;
+    file_ids: Optional[List[uuid.UUID]] = Field(default_factory=list);
     
 class ChatSummary(BaseModel):
     id: uuid.UUID;

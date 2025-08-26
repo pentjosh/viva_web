@@ -17,6 +17,8 @@ const ModalGetMyFiles = ({ isOpen, onClose, onConfirm, preSelectedFiles }: Modal
     const [files, setFiles] = useState<FileType[]>([]);
     const [selectedFiles, setSelectedFiles] = useState<Map<string, FileType>>(new Map());
 
+    const MAX_FILES = 5;
+
     useEffect(() => {
         const modal = modalRef.current;
 
@@ -84,7 +86,9 @@ const ModalGetMyFiles = ({ isOpen, onClose, onConfirm, preSelectedFiles }: Modal
             if (newSelection.has(file.id)) {
                 newSelection.delete(file.id);
             } else {
-                newSelection.set(file.id, file);
+                if(newSelection.size < MAX_FILES){
+                    newSelection.set(file.id, file);
+                }
             }
             return newSelection;
         });
@@ -94,7 +98,8 @@ const ModalGetMyFiles = ({ isOpen, onClose, onConfirm, preSelectedFiles }: Modal
     <Portal target="modal-getmyfiles-portal">
         <dialog className="modal" ref={modalRef}>
             <div className="modal-box w-11/12 max-w-lg flex flex-col h-11/12">
-                <h3 className="text-lg font-semibold mb-4">My Files</h3>
+                <h3 className="text-lg font-semibold mb-1">My Files</h3>
+                <h5 className="text-xs mb-4 text-error font-semibold">You can only pick maximum {MAX_FILES} files! ({selectedFiles.size}/{MAX_FILES})</h5>
                 <div className="flex-1 items-center mt-3 overflow-y-auto min-h-0">
                     <ul className="divide-y divide-base-content/10 px-2 w-full">
                         { files.length > 0 ? (

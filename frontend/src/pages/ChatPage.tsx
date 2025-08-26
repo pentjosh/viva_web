@@ -5,6 +5,7 @@ import { useAuth } from '../components/hooks/useAuth';
 import { useChat } from '../components/hooks/useChat';
 import { ChatInput } from '../components/ui/ChatInput';
 import { ChatHistory } from '../components/ui/ChatHistory';
+import ChatTypeSelection from '../components/ui/ChatTypeSelection';
 
 const ChatPage = () => {
     const { loginSuccess, clearLoginSuccess } = useAuth();
@@ -28,11 +29,12 @@ const ChatPage = () => {
  
     return (
         <Layout>
-            <div className="flex flex-col h-full max-w-4xl mx-auto w-full">
+            <div className="relative shrink flex flex-col h-full max-w-4xl mx-auto w-full">
+                <ChatTypeSelection isDisabled={chatList.length > 0} />
+                <div className="h-10" />
                 <ChatHistory ref={chatContainerRef} chatList={chatList} isTyping={isTyping} streamedMessage={streamedMessage}/>
                 <ChatInput onSend={sendMessage} isSending={isTyping} />
             </div>
-            
         </Layout>
     );
 };

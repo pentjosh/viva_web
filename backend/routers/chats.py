@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Query;
-from models.chats import ( ChatRequest, ChatModel, ChatSummary );
+from models.chats import ( ChatRequest, ChatResponse, ChatSummary );
 from services.auths import ( get_current_user );
 from services.chats import ( chat_handler, get_all_chats_by_user_id, get_chat_by_id, delete_chat_by_id );
 from typing import List;
@@ -8,11 +8,12 @@ import uuid;
 
 router = APIRouter();
 
-@router.post("/chat/generate", response_model=ChatModel)
-async def generate_chat(request: ChatRequest, user = Depends(get_current_user)) -> ChatModel:
-    chat = chat_handler(user_id=user.id, 
+@router.post("/chat/generate", response_model=ChatResponse)
+async def generate_chat(request: ChatRequest, user = Depends(get_current_user)) -> ChatResponse:
+    chat = await chat_handler(user_id=user.id, 
                         content=request.content, 
-                        chat_id=request.chat_id);
+                        chat_id=request.chat_id,
+                        file_ids=request.file_ids);
     if not chat:
         raise HTTPException(status_code=500, detail="An error occurred while processing your request.");
     return chat;
@@ -28,9 +29,9 @@ async def get_user_chat_history(skip:int = Query(0, ge=0),limit:int = Query(5, g
         );
     return history;
 
-@router.get("/chat/{chat_id}", response_model=ChatModel)
-async def get_user_chat_by_id(chat_id: uuid.UUID, user = Depends(get_current_user)) -> ChatModel:
-    chat = get_chat_by_id(chat_id=chat_id, user_id=user.id);
+@router.get("/chat/{chat_id}", response_model=ChatResponse)
+async def get_user_chat_by_id(chat_id: uuid.UUID, user = Depends(get_current_user)) -> ChatResponse:
+    chat = await get_chat_by_id(chat_id=chat_id, user_id=user.id);
     if not chat:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,

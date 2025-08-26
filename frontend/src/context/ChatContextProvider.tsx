@@ -3,7 +3,8 @@ import { toast } from 'react-toastify';
 import { ChatHistorySummary, ChatList } from "../api/chats/types";
 import { generateChat, getChatHistory, getChatById, page_size, deleteChatById }  from "../api/chats/chats";
 import ChatContext from "./ChatContext";
-import { useAuth } from '../components/hooks/useAuth';
+import { useAuth } from "../components/hooks/useAuth";
+import { FileType } from "../api/files/types";
 
 export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [chatList,  setChatList] =  useState<ChatList[]>([]);
@@ -105,7 +106,7 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
         try{
             const selectedChat = await getChatById(chatId);
             setChatID(selectedChat.id);
-            setChatList(selectedChat.messages.map(msg => ({ role: msg.role, message: msg.content })));
+            setChatList(selectedChat.messages.map(msg => ({ role: msg.role, message: msg.content, files: msg.files })));
         }
         catch{
             toast.error("Failed to load chat.");
@@ -115,21 +116,21 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
         }
     };
 
-    const sendMessage = async (message: string) => {
+    const sendMessage = async (message: string, files:FileType[]) => {
         const userMessage = message.trim();
         const isNewChat = chatID === null;
-        if (!userMessage || isTyping) return;
+        if (!userMessage && files.length === 0 || isTyping) return;
 
         setChatList(prev => [
             ...prev,
-            { role: "user", message: userMessage }
+            { role: "user", message: userMessage, files: files }
         ]);
 
         setIsTyping(true);
         setStreamedMessage('');
 
         try {
-            const response = await generateChat(userMessage, chatID);
+            const response = await generateChat(userMessage, chatID, files);
             
             if (response && response.messages) {
                 setChatID(response.id);
@@ -150,7 +151,7 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
                     if (i >= botMessageContent.length) {
                         clearInterval(typingInterval.current!);
                         setIsTyping(false);
-                        setChatList(response.messages.map(msg => ({ role: msg.role, message: msg.content })));
+                        setChatList(response.messages.map(msg => ({ role: msg.role, message: msg.content, files: msg.files })));
                         setStreamedMessage('');
                     }
                 }, 5);

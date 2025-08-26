@@ -7,7 +7,7 @@ import { FileType } from '../../api/files/types';
 import { FileIcon, defaultStyles } from "react-file-icon";
 
 interface ChatInputProps {
-    onSend: (message: string)=>void;
+    onSend: (message: string, file: FileType[])=>void;
     isSending: boolean;
 }
 
@@ -27,8 +27,8 @@ export const ChatInput = ({onSend, isSending}:ChatInputProps)=> {
     });
 
     const handleSend = () => {
-        if (input.trim()) {
-            onSend(input);
+        if (input.trim() || attachedFiles.length > 0) {
+            onSend(input, attachedFiles);
             setInput('');
             setAttachedFiles([]);
         }
@@ -52,11 +52,12 @@ export const ChatInput = ({onSend, isSending}:ChatInputProps)=> {
     };
 
     const handleAttachFiles = (filesFromModal: FileType[]) => {
-        setAttachedFiles(prevFiles => {
-            const existingIds = new Set(prevFiles.map(f => f.id));
-            const newFiles = filesFromModal.filter(f => !existingIds.has(f.id));
-            return [...prevFiles, ...newFiles];
-        });
+        // setAttachedFiles(prevFiles => {
+        //     const existingIds = new Set(prevFiles.map(f => f.id));
+        //     const newFiles = filesFromModal.filter(f => !existingIds.has(f.id));
+        //     return [...prevFiles, ...newFiles];
+        // });
+        setAttachedFiles(filesFromModal);
     };
 
     useEffect(() => {
@@ -70,7 +71,7 @@ export const ChatInput = ({onSend, isSending}:ChatInputProps)=> {
     return (
         <>
         <div className="flex flex-col mt-3 px-3 sm:px-10 sm:mt-2 w-full">
-            <div className="flex flex-col w-full justify-center bg-base-300 bg-clip-border rounded-[28px] px-5 py-2.5 shadow-md border-1 border-gray-400">
+            <div className="flex flex-col w-full justify-center bg-base-300 rounded-[28px] px-5 py-2.5 shadow-md border-1 border-gray-400">
                 { attachedFiles.length > 0 && (
                     <div className="flex flex-wrap gap-2 p-1">
                     { attachedFiles.map((file) => {

@@ -32,7 +32,7 @@ export const BotChatBubble = ({message}:BotChatBubleProps) => {
     return (
         <div className="flex w-full justify-start">
             <div className="flex flex-col max-w-full group">
-                <div className="flex p-3">
+                <div className="flex">
                     <div className="prose prose-sm whitespace-break-spaces break-words overflow-x-auto text-sm" ref={bubbleRef}>
                         <MarkdownRenderer>{String(message).replace(/(\[.*?\])/g, "$1\n")}</MarkdownRenderer>
                     </div>

@@ -11066,3 +11066,24 @@ LINE 2:             SELECT doc_chunk_metadata
 2025-08-20 10:08:26,279 - app_logger - ERROR - Failed to process file with id 874c436b-41fd-4b57-a68f-371ea831cb40. Reason: 400 Request contains an invalid argument.
 2025-08-21 20:21:15,578 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
 2025-08-21 20:21:15,632 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-24 23:23:48,055 - app_logger - ERROR - Error calling generative model: Part.from_text() takes 1 positional argument but 2 were given
+2025-08-24 23:24:21,041 - app_logger - ERROR - Error calling generative model: Part.from_text() takes 1 positional argument but 2 were given
+2025-08-24 23:26:34,051 - app_logger - ERROR - Error calling generative model: Part.from_text() takes 1 positional argument but 2 were given
+2025-08-24 23:29:41,751 - app_logger - ERROR - Error calling generative model: Part.from_text() takes 1 positional argument but 2 were given
+2025-08-24 23:32:38,502 - app_logger - ERROR - Error calling generative model: Part.from_text() takes 1 positional argument but 2 were given
+2025-08-24 23:34:35,792 - app_logger - ERROR - Error calling generative model: Part.from_text() takes 1 positional argument but 2 were given
+2025-08-24 23:36:05,491 - app_logger - ERROR - Error calling generative model: Part.from_text() takes 1 positional argument but 2 were given
+2025-08-24 23:37:17,281 - app_logger - ERROR - Error calling generative model: Part.from_text() takes 1 positional argument but 2 were given
+2025-08-24 23:40:39,562 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-24 23:40:52,132 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-24 23:40:52,143 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-25 02:03:34,038 - app_logger - ERROR - Error calling generative model: Part.from_text() takes 1 positional argument but 2 were given
+2025-08-25 02:23:57,769 - app_logger - ERROR - Error calling generative model: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'The model does not support setting thinking_budget to 0.', 'status': 'INVALID_ARGUMENT'}}
+2025-08-25 11:01:19,002 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-25 11:01:22,414 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-25 11:01:22,414 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-25 11:01:22,414 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-25 11:01:28,789 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-25 11:01:28,802 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-25 16:47:42,954 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-25 16:47:42,958 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>

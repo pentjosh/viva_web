@@ -1,11 +1,13 @@
 import { ChatModel, ChatHistorySummary } from "./types";
 import { BASE_URL } from '../base';
+import { FileType } from "../files/types"
 
 //const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 export const page_size = 20;
 
-export const generateChat = async (content: string, chat_id: string | null): Promise<ChatModel> => {
-    const chatPayload = { content: content, chat_id: chat_id};
+export const generateChat = async (content: string, chat_id: string | null, files: FileType[]): Promise<ChatModel> => {
+    const file_ids = files.map(file => file.id);
+    const chatPayload = { content: content, chat_id: chat_id, file_ids: file_ids};
 
     try {
         const response = await fetch(`${BASE_URL}/api/chat/generate`, {
