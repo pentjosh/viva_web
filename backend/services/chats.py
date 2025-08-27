@@ -7,8 +7,7 @@ GOOGLE_PROJECT_ID );
 from google.oauth2 import service_account;
 from uuid import UUID;
 from utils.db import get_db_context;
-from models.chats import (Chat, ChatMessage, ChatSummary, ChatMessageResponse, ChatResponse);
-from models.files import (FilesModel);
+from models.chats import (Chat, ChatMessage, ChatSummary, ChatResponse, ChatType, UserMessage, ModelMessage);
 from fastapi import HTTPException;
 from utils.logger import logger;
 from datetime import datetime, timezone;
@@ -26,7 +25,7 @@ from google.genai.types import (
 );
 import os;
 import json;
-from services.files import get_file_by_id_all;
+from services.files import get_files_by_ids;
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GOOGLE_VERTEX_CREDENTIAL;
 with open(GOOGLE_VERTEX_CREDENTIAL) as file:
@@ -117,27 +116,46 @@ def generate_chat_title(messages: list)-> str:
     response = client.models.generate_content(model="gemini-2.0-flash-lite", contents=prompt);
     return response.text.strip().replace('"','');
 
-def insert_update_chat(user_id: UUID, user_message: ChatMessage, model_message: ChatMessage, chat: Chat=None) :
+async def get_model_response(chat_history: list) -> str:
+    if not chat_history:
+        return None;
+    
+    try:
+        messages = [
+            Content(role=msg['role'], parts=[Part.from_text(text=msg['content'])]) for msg in chat_history
+        ];
+
+        response = client.models.generate_content(
+            model=GOOGLE_CHAT_MODEL,
+            contents=messages,
+            config=content_config            
+            );
+        
+        if not response or not response.text:
+            logger.erroe("Received an empty or blocked response from the generative model.");
+            return None;
+        
+        return response.text;
+    except Exception as e:
+        logger.error(f"Error calling generative model: {e}");
+        print(str(e));
+        return None;
+
+
+def insert_update_chat(user_id: UUID, user_message: UserMessage, model_message: ModelMessage, chat_type: ChatType, chat: Chat=None) :
     with get_db_context() as db:
         try:
             if not chat:
                 messages = [user_message.model_dump(mode='json'), model_message.model_dump(mode='json')];
                 title = generate_chat_title(messages);
-                chat = Chat(
-                        user_id=user_id,
-                        title = title,
-                        meta = {"messages":messages},
-                        archived = False,
-                        pinned = False
-                        );
+                chat = Chat(user_id=user_id, title = title, messages = messages, type = chat_type);
                 db.add(chat);
             else:
-                db.add(chat);
-                messages = chat.meta.get("messages",[]);
-                messages.append(user_message.model_dump(mode='json'));
-                messages.append(model_message.model_dump(mode='json'));
-                chat.meta["messages"] = messages;
-                flag_modified(chat,"meta");
+                if chat not in db:
+                    db.add(chat);
+                chat.messages.append(user_message.model_dump(mode='json'));
+                chat.messages.append(model_message.model_dump(mode='json'));
+                flag_modified(chat,"messages");
                 
             db.commit();
             db.refresh(chat);
@@ -147,150 +165,66 @@ def insert_update_chat(user_id: UUID, user_message: ChatMessage, model_message: 
             logger.warning(str(e));
             db.rollback();
             return None;
-
-def get_model_response(history: list) -> str:
-    if not history:
-        return None;
     
-    try:
-        messages = [
-            Content(role=msg['role'], parts=[Part.from_text(text=msg['content'])]) for msg in history
-        ];
-
-        response = client.models.generate_content(
-            model=GOOGLE_CHAT_MODEL,
-            contents=messages,
-            config=content_config            
-            );
-        if not response or not response.text:
-            logger.warning("Received an empty or blocked response from the generative model.");
-            return None;
-        
-        return response.text;
-    except Exception as e:
-        logger.error(f"Error calling generative model: {e}");
-        return None;
-    
-async def get_chat_by_id(chat_id: UUID, user_id: UUID) -> Optional[ChatResponse]:
+def get_chat_by_id(chat_id: UUID, user_id: UUID) -> Optional[ChatResponse]:
     try:
         with get_db_context() as db:
             chat = db.query(Chat).filter_by(id=chat_id, user_id=user_id).first();
+            if not chat:
+                return None;
             
-        if not chat:
-            return None;
-        
-        revamp_message = [];
-        messages_db = chat.meta.get("messages",[]);
-        all_file_ids = [fid for msg in messages_db for fid in msg.get("files", [])];
-        file_db = await get_file_by_id_all(all_file_ids);
-        files_map = {str(f.id): f for f in file_db};
-        
-        for msg in messages_db:
-            msg_file_ids = msg.get("files", []);
-        
-            files = [
-                FilesModel.model_validate(files_map[str(fid)])
-                for fid in msg_file_ids if str(fid) in files_map
-            ];
-            
-            revamp_message.append(
-                ChatMessageResponse(
-                    role = msg['role'],
-                    content = msg['content'],
-                    files = files,
-                    timestamp = msg['timestamp']
-                )
-            );
-        
-        final_response = ChatResponse(
-            id = chat.id,
-            user_id=  chat.user_id,
-            title = chat.title,
-            messages = revamp_message,
-            created_at = chat.created_at,
-            updated_at = chat.updated_at,
-            archived = chat.archived,
-            pinned = chat.pinned
-        );
-        
-        return final_response;
-    
+            return chat;
     except Exception as e:
         logger.warning(str(e));
         return None;
 
-async def chat_handler(user_id: UUID, content: str, chat_id: Optional[UUID] = None, file_ids: List[UUID] = None):
-    user_message = ChatMessage(role="user", content=content, files=file_ids);
-    
-    chat_history = [];
-    chat: Optional[Chat] = None;
-    
-    if chat_id:
-        chat = get_chat_by_id(chat_id, user_id);
-        if not chat:
-            raise HTTPException(status_code=404, detail="Chat not found");
-        chat_history = chat.meta.get("messages",[]);
-    else:
-        chat = None;
-        chat_history = [];
-    
-    full_history = chat_history + [user_message.model_dump()];
-    
-    model_response_text = get_model_response(full_history);
-    print(model_response_text)
-    
-    if model_response_text is None:
-        raise HTTPException(status_code=503, detail="AI services unavailable.");
-    
-    model_message = ChatMessage(role="model", content=model_response_text);
-    
-    updated_chat = insert_update_chat(
-        user_id,
-        user_message,
-        model_message,
-        chat=chat
-    )
-    
-    revamp_message = [];
-    messages_db = updated_chat.meta.get("messages",[]);
-    all_file_ids = [fid for msg in messages_db for fid in msg.get("files", [])];
-    file_db = await get_file_by_id_all(all_file_ids);
-    files_map = {str(f.id): f for f in file_db};
-    
-    for msg in messages_db:
-        msg_file_ids = msg.get("files", []);
+async def chat_handler(user_id: UUID, content: str, chat_type: Optional[ChatType] = None, chat_id: Optional[UUID] = None, file_ids: List[UUID] = None) -> Optional[ChatResponse]:
+    try:
         
-        files = [
-            FilesModel.model_validate(files_map[str(fid)])
-            for fid in msg_file_ids if str(fid) in files_map
-        ];
-        
-        revamp_message.append(
-            ChatMessageResponse(
-                role = msg['role'],
-                content = msg['content'],
-                files = files,
-                timestamp = msg['timestamp']
-            )
-        );
-    
-    final_response = ChatResponse(
-        id = updated_chat.id,
-        user_id=  updated_chat.user_id,
-        title = updated_chat.title,
-        messages = revamp_message,
-        created_at = updated_chat.created_at,
-        updated_at = updated_chat.updated_at,
-        archived = updated_chat.archived,
-        pinned = updated_chat.pinned
-    );
-    
-    return final_response;
+        user_files = [];
+        if file_ids:
+            user_files = await get_files_by_ids(file_ids=file_ids, user_id=user_id);
+            
+        user_message = UserMessage(role = "user", 
+                                content = content, 
+                                files = user_files);
 
+        chat_history = [];
+        chat: Optional[Chat] = None;
+        new_chat_type: ChatType;
+        
+        if chat_id:
+            chat = get_chat_by_id(chat_id, user_id);
+            if not chat:
+                raise HTTPException(status_code=404, detail="Chat not found!");
+            chat_history = chat.messages;
+            new_chat_type = chat.type;
+        else:
+            new_chat_type = chat_type;
+        
+        chat_history_to_model = chat_history + [user_message.model_dump(mode="json")];
+        
+        model_response_text = await get_model_response(chat_history_to_model);
+               
+        model_message = ModelMessage(role="model", content=model_response_text);
+        
+        final_chat = insert_update_chat(
+            user_id = user_id,
+            user_message = user_message,
+            model_message = model_message,
+            chat_type = new_chat_type,
+            chat = chat
+        );
+        
+        return ChatResponse.model_validate(final_chat);
+    except Exception as e:
+        logger.error(f"Error generating chat : {e}");
+        print(str(e));
+        
 def get_all_chats_by_user_id(user_id: UUID, skip:int=0, limit:int=5) -> list[ChatSummary]:
     try:
         with get_db_context() as db:
-            chats = db.query(Chat.id, Chat.title).filter_by(user_id=user_id, archived=False).order_by(Chat.created_at.desc());
+            chats = db.query(Chat.id, Chat.title).filter_by(user_id=user_id).order_by(Chat.created_at.desc());
             paginated_chat = chats.offset(skip).limit(limit).all();
             
             if not paginated_chat:

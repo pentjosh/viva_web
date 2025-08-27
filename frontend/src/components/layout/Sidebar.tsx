@@ -41,11 +41,11 @@ const Sidebar = ({isSideBarOpen, onToggle} : SidebarProps) => {
         isSideBarOpen ? "ml-0" : "-ml-64"
       }`}>
         <div className="flex h-full min-h-0 flex-col">
-            <div className="flex items-center justify-between h-16 px-4 bg-base-200">
+            <div className="flex items-center justify-between h-16 px-4">
                 <div className="flex px-4">
                     <img className="w-32 md:w-32 lg:w-32 object-contain" src={logo} />
                 </div>
-                <button onClick={onToggle} className="btn btn-ghost focus:outline-none w-10 p-1 rounded-full">
+                <button onClick={onToggle} className="btn btn-ghost focus:outline-none w-10 p-2 rounded-full">
                     <PanelLeftClose />
                 </button>
             </div>

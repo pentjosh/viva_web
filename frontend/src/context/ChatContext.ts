@@ -30,6 +30,8 @@ export interface ChatContextType {
     isHistoryLoading: boolean;
     loadMoreChatHistory: () => Promise<void>;
     deleteChat: (chatId: string) => Promise<void>;
+    chatType: string;
+    setChatType: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);

@@ -30,7 +30,7 @@ const Header = ({isSideBarOpen, onToggle}:HeaderProps) => {
                 <div className="flex items-center">
                     {!isSideBarOpen && 
                     (<div className="flex">
-                        <div onClick={onToggle} className="btn btn-ghost focus:outline-none w-10 p-1 rounded-lg">
+                        <div onClick={onToggle} className="btn btn-ghost focus:outline-none w-10 p-2 btn-circle">
                             <PanelRightClose />
                         </div>
                         <div className="flex px-2">

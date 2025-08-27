@@ -74,7 +74,7 @@ export const UserChatBubble = ({message, files}:UserChatBubbleProps) => {
                         {files?.map((file, key) => {
                             const extension = file.name.split(".").pop() || "";
                             return (
-                        <div key={key} className="flex bg-base-300 rounded-lg p-4 gap-3">
+                        <div key={key} className="flex bg-base-200 rounded-lg p-4 gap-3">
                             <div className="size-6">
                                 <FileIcon color="mistyrose" extension={extension} {...defaultStyles[extension as keyof typeof defaultStyles]} />
                             </div>

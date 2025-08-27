@@ -11,7 +11,7 @@ const ChatPage = () => {
     const { loginSuccess, clearLoginSuccess } = useAuth();
     const toastShownRef = useRef(false);
     const chatContainerRef = useRef<HTMLDivElement | null>(null);
-    const { chatList, isTyping, streamedMessage, sendMessage } = useChat();
+    const { chatList, isTyping, streamedMessage, sendMessage, chatID, chatType, setChatType } = useChat();
 
     useEffect(()=>{
         if(loginSuccess && !toastShownRef.current){
@@ -26,11 +26,13 @@ const ChatPage = () => {
             chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
         }
     }, [chatList, streamedMessage]);
+
+    const isChatTypeSelectionShouldHide = chatID !== null || chatList.length > 0;
  
     return (
         <Layout>
             <div className="relative shrink flex flex-col h-full max-w-4xl mx-auto w-full">
-                <ChatTypeSelection isDisabled={chatList.length > 0} />
+                {!isChatTypeSelectionShouldHide && (<ChatTypeSelection value = {chatType} onChange={setChatType} />)}
                 <div className="h-10" />
                 <ChatHistory ref={chatContainerRef} chatList={chatList} isTyping={isTyping} streamedMessage={streamedMessage}/>
                 <ChatInput onSend={sendMessage} isSending={isTyping} />

@@ -71,7 +71,7 @@ export const ChatInput = ({onSend, isSending}:ChatInputProps)=> {
     return (
         <>
         <div className="flex flex-col mt-3 px-3 sm:px-10 sm:mt-2 w-full">
-            <div className="flex flex-col w-full justify-center bg-base-300 rounded-[28px] px-5 py-2.5 shadow-md border-1 border-gray-400">
+            <div className="flex flex-col w-full justify-center bg-base-200 rounded-[28px] px-5 py-2.5 shadow-md border-1 border-gray-400 bg-clip-padding">
                 { attachedFiles.length > 0 && (
                     <div className="flex flex-wrap gap-2 p-1">
                     { attachedFiles.map((file) => {

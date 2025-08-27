@@ -95,15 +95,14 @@ async def get_file_by_id(file_id: UUID, user_id: UUID) -> Optional[Files]:
         
         return file;
 
-async def get_file_by_id_all(file_ids: List[UUID]) -> Optional[Files]:
+async def get_files_by_ids(file_ids: List[UUID], user_id: UUID) -> Optional[Files]:
     with get_db_context() as db:
-        files = db.query(Files).filter(Files.id.in_(file_ids)).all();
+        files = db.query(Files).filter(Files.id.in_(file_ids), Files.user_id == user_id).all();
         
         if not files:
             return [];
         
         return files;
-    
 
 async def get_files_completed_by_userid(user_id: UUID):
     with get_db_context() as db:
@@ -114,8 +113,6 @@ async def get_files_completed_by_userid(user_id: UUID):
     
     return files;
     
-
-
 async def get_files_by_userid(user_id: UUID):
     def db_query():
         with get_db_context() as db:

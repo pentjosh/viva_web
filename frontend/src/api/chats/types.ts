@@ -12,10 +12,11 @@ export interface ChatModel {
     user_id: string;
     title: string;
     messages: ChatMessage[];
+    type?: string;
     created_at?: string;
     updated_at?: string;
-    archived: boolean;
-    pinned?: boolean;
+    // archived: boolean;
+    // pinned?: boolean;
 }
 
 export type ChatList = {

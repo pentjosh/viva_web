@@ -11087,3 +11087,62 @@ LINE 2:             SELECT doc_chunk_metadata
 2025-08-25 11:01:28,802 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
 2025-08-25 16:47:42,954 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
 2025-08-25 16:47:42,958 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-26 15:50:43,426 - app_logger - WARNING - 1 validation error for ChatResponse
+meta
+  Field required [type=missing, input_value={'id': UUID('e57dea87-27d... False, 'pinned': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-08-26 15:50:44,403 - app_logger - WARNING - 1 validation error for ChatResponse
+meta
+  Field required [type=missing, input_value={'id': UUID('e57dea87-27d... False, 'pinned': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-08-26 15:50:45,225 - app_logger - WARNING - 1 validation error for ChatResponse
+meta
+  Field required [type=missing, input_value={'id': UUID('e57dea87-27d... False, 'pinned': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-08-26 15:50:45,927 - app_logger - WARNING - 1 validation error for ChatResponse
+meta
+  Field required [type=missing, input_value={'id': UUID('e57dea87-27d... False, 'pinned': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-08-26 15:55:26,725 - app_logger - WARNING - 1 validation error for ChatResponse
+meta
+  Field required [type=missing, input_value={'id': UUID('7a8857e8-8b2... False, 'pinned': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-08-27 13:17:49,591 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 13:17:49,601 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 13:17:49,604 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 13:36:12,131 - app_logger - ERROR - Error generating chat : get_files_by_ids() missing 1 required positional argument: 'user_id'
+2025-08-27 13:38:12,476 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=<coroutine object get_mod...e at 0x000001EC0410F240>, input_type=coroutine]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-08-27 13:39:49,577 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 13:39:49,579 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 13:39:49,593 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 13:39:49,609 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 13:39:49,629 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:09:39,643 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:09:39,652 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:09:39,655 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:10:14,643 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:11:06,120 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:11:12,361 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:11:41,993 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:11:42,001 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:11:42,014 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:11:42,022 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:11:42,034 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:17:44,775 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:17:44,781 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:17:44,781 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:17:52,781 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:17:52,781 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:17:52,797 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:17:52,823 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:17:52,836 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:19:46,517 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:19:52,782 - app_logger - WARNING - Error fetching chat list : Entity namespace for "chats.id" has no property "archived"
+2025-08-27 14:20:21,142 - app_logger - ERROR - Error generating chat : 1 validation error for ChatResponse
+  Input should be a valid dictionary or object to extract fields from [type=model_attributes_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/model_attributes_type
+2025-08-27 15:10:14,440 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-27 15:10:14,447 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>

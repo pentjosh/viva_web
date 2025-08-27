@@ -17,6 +17,7 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
     const [chatHistoryPage, setChatHistoryPage ] = useState(1);
     const [hasMoreHistory, setHasMoreHistory] = useState(true);
     const [isHistoryLoading, setIsHistoryLoading] = useState(false);
+    const [chatType, setChatType] = useState("general");
 
     const deleteChat = async(chatIdToDelete: string) => {
         const previousChatHistory = chatHistory;
@@ -41,10 +42,11 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
     const startNewChat = () => {
         setChatID(null);
         setChatList([]);
-        setStreamedMessage('');
+        setChatType("general");
+        setStreamedMessage("");
         if (typingInterval.current) {
             clearInterval(typingInterval.current);
-        }
+        };
         setIsTyping(false);
     };
 
@@ -100,19 +102,16 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
 
     const loadChat = async (chatId: string) => {
         if(chatId === chatID) return;
-        //setIsTyping(true);
         setStreamedMessage('');
 
         try{
             const selectedChat = await getChatById(chatId);
             setChatID(selectedChat.id);
             setChatList(selectedChat.messages.map(msg => ({ role: msg.role, message: msg.content, files: msg.files })));
+            setChatType(selectedChat.type || "general");
         }
         catch{
             toast.error("Failed to load chat.");
-        }
-        finally{
-            setIsTyping(false);
         }
     };
 
@@ -130,7 +129,7 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
         setStreamedMessage('');
 
         try {
-            const response = await generateChat(userMessage, chatID, files);
+            const response = await generateChat(userMessage, chatID, files, chatType);
             
             if (response && response.messages) {
                 setChatID(response.id);
@@ -177,7 +176,9 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
         hasMoreHistory,
         isHistoryLoading,
         loadMoreChatHistory,
-        deleteChat
+        deleteChat,
+        chatType,
+        setChatType
     };
 
     return (
