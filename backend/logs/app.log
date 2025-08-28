@@ -11146,3 +11146,7 @@ content
     For further information visit https://errors.pydantic.dev/2.11/v/model_attributes_type
 2025-08-27 15:10:14,440 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
 2025-08-27 15:10:14,447 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-28 10:40:07,597 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-28 10:40:07,607 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-28 10:40:16,692 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-08-28 10:40:16,704 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>

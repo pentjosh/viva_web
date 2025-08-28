@@ -61,10 +61,9 @@ export const UserChatBubble = ({message, files}:UserChatBubbleProps) => {
     };
 
     return (
-        <div className="flex flex-col w-full items-end gap-3">
+        <div className="flex flex-col w-full items-end gap-1">
             {files && files.length > 0 && (
             <div className="relative flex w-full justify-end items-center">
-                
                     {showLeftArrow && (
                     <button onClick={() => handleScroll('left')} className="absolute btn btn-ghost btn-circle left-1 top-[0.5] z-10 p-1 bg-base-300">
                         <ChevronLeft size={16} />
@@ -74,7 +73,7 @@ export const UserChatBubble = ({message, files}:UserChatBubbleProps) => {
                         {files?.map((file, key) => {
                             const extension = file.name.split(".").pop() || "";
                             return (
-                        <div key={key} className="flex bg-base-200 rounded-lg p-4 gap-3">
+                        <div key={key} className="flex bg-base-200 border border-base-content/20 rounded-lg p-5 gap-3">
                             <div className="size-6">
                                 <FileIcon color="mistyrose" extension={extension} {...defaultStyles[extension as keyof typeof defaultStyles]} />
                             </div>
@@ -83,19 +82,16 @@ export const UserChatBubble = ({message, files}:UserChatBubbleProps) => {
                         })}
                     </div>
                     
-                    
                     {showRightArrow && (
                     <button onClick={() => handleScroll('right')} className="absolute btn btn-ghost btn-circle right-1 top-[0.5] z-10 p-1 bg-base-300">
                         <ChevronRight size={16} />
                     </button>)}
-
-                
             </div>)}
             
             {message && (
             <div className="flex group max-w-2xl">
                 <div className="flex flex-col gap-1">
-                    <div className="bg-base-300 rounded-xl px-4 py-2.5 break-words text-sm prose prose-sm whitespace-break-spaces">
+                    <div className="bg-base-200 border border-base-content/20 rounded-xl px-4 py-2.5 break-words text-sm prose prose-sm whitespace-break-spaces shadow-xs">
                         {message}
                     </div>
                     <div className="flex justify-end">

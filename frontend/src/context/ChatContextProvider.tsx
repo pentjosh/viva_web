@@ -18,6 +18,7 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
     const [hasMoreHistory, setHasMoreHistory] = useState(true);
     const [isHistoryLoading, setIsHistoryLoading] = useState(false);
     const [chatType, setChatType] = useState("general");
+    const [webSearch, setWebSearch] = useState(false);
 
     const deleteChat = async(chatIdToDelete: string) => {
         const previousChatHistory = chatHistory;
@@ -43,6 +44,7 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
         setChatID(null);
         setChatList([]);
         setChatType("general");
+        setWebSearch(false);
         setStreamedMessage("");
         if (typingInterval.current) {
             clearInterval(typingInterval.current);
@@ -178,7 +180,9 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
         loadMoreChatHistory,
         deleteChat,
         chatType,
-        setChatType
+        setChatType,
+        webSearch,
+        setWebSearch
     };
 
     return (

@@ -1,10 +1,11 @@
 import { useRef, useState, useEffect } from "react";
-import { Send, Mic, Square, Paperclip, X } from 'lucide-react';
+import { Send, Mic, Square, Paperclip, X, Globe } from 'lucide-react';
 import useAutosizeTextArea from '../hooks/useAutoSizeTextArea';
 import { useAudioRecorder } from '../hooks/useAudioRecord';
 import ModalGetMyFiles from '../ui/ModalGetMyFiles';
 import { FileType } from '../../api/files/types';
 import { FileIcon, defaultStyles } from "react-file-icon";
+import { useChat } from "../hooks/useChat";
 
 interface ChatInputProps {
     onSend: (message: string, file: FileType[])=>void;
@@ -17,6 +18,7 @@ export const ChatInput = ({onSend, isSending}:ChatInputProps)=> {
     const audioRef = useRef<Blob | null>(null);
     const [isModalGetMyFilesOpen, setIsModalGetMyFilesOpen] = useState(false);
     const [attachedFiles, setAttachedFiles] = useState<FileType[]>([]);
+    const { chatType, webSearch, setWebSearch } = useChat();
 
     useAutosizeTextArea({ value: input, textareaRef, minRows: 1 });
 
@@ -60,9 +62,13 @@ export const ChatInput = ({onSend, isSending}:ChatInputProps)=> {
         setAttachedFiles(filesFromModal);
     };
 
+    const handleWebSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setWebSearch(e.target.checked);
+    };
+
     useEffect(() => {
-        console.log(attachedFiles);
-    }, [attachedFiles]);
+        console.log(webSearch)
+    }, [webSearch]);
 
     const handleRemoveFile = (fileid: string) => {
         setAttachedFiles(prev => prev.filter(file => file.id !== fileid));
@@ -71,14 +77,14 @@ export const ChatInput = ({onSend, isSending}:ChatInputProps)=> {
     return (
         <>
         <div className="flex flex-col mt-3 px-3 sm:px-10 sm:mt-2 w-full">
-            <div className="flex flex-col w-full justify-center bg-base-200 rounded-[28px] px-5 py-2.5 shadow-md border-1 border-gray-400 bg-clip-padding">
+            <div className="flex flex-col w-full justify-center bg-base-200 rounded-[28px] px-5 py-2.5 shadow-md border-1 border-base-content/20">
                 { attachedFiles.length > 0 && (
                     <div className="flex flex-wrap gap-2 p-1">
                     { attachedFiles.map((file) => {
                         const { name } = getFileDetails(file.name);
                         return(
                         <div key={file.id} className="tooltip group" data-tip={file.name}>
-                            <div className="relative bg-base-100 rounded-lg p-5 flex items-center gap-2 text-sm">
+                            <div className="relative bg-base-100 border border-base-content/20 rounded-lg p-5 flex items-center gap-2 text-sm">
                                 <div className="size-6">
                                     <FileIcon color="mistyrose" extension={file.extension} {...defaultStyles[file.extension as keyof typeof defaultStyles]} />
                                 </div>
@@ -98,12 +104,22 @@ export const ChatInput = ({onSend, isSending}:ChatInputProps)=> {
                     onKeyDown={handleInputKeyDown} style={{ minHeight: "40px" }} />
                 </div>
 
-                <div className="flex items-center text-base-content justify-between">
-                    <div className="tooltip tooltip-top" data-tip="Add my files">
-                        <button type="button" className="btn btn-ghost btn-circle p-1" onClick={()=>setIsModalGetMyFilesOpen(true)}>
-                            <Paperclip size="20" />
-                        </button>
+                <div className="flex items-center text-base-content justify-between gap-1">
+                    { chatType === "general" && (
+                    <div className="flex-1 flex flex-row items-center gap-1">
+                        <div className="flex tooltip tooltip-top" data-tip="Add my files">
+                            <button type="button" className="btn btn-ghost btn-circle p-1" onClick={()=>setIsModalGetMyFilesOpen(true)}>
+                                <Paperclip size="20" />
+                            </button>
+                        </div>
+                        <div className="flex items-center">
+                            <input type="checkbox" id="webSearchBtn" className="peer" checked={webSearch} onChange={handleWebSearch} />
+                            <label htmlFor="webSearchBtn" className="btn btn-ghost flex items-center gap-2 p-2 cursor-pointer rounded-lg transition-colors duration-200
+                            ease-in-out peer-checked:text-info border peer-checked:border-base-content/20 peer-checked:bg-transparent"><Globe size="20" />Web Search</label>
+                        </div>
                     </div>
+                    )}
+                    <div className="flex-1"></div>
                     <div className="flex items-center">
                         { input.trim() ? (<div className="tooltip tooltip-top" data-tip="Send">
                             <button onClick={handleSend} type="button" className="btn btn-ghost btn-circle p-1" disabled={isSending || !input.trim()}>

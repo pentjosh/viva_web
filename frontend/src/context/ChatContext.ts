@@ -32,6 +32,8 @@ export interface ChatContextType {
     deleteChat: (chatId: string) => Promise<void>;
     chatType: string;
     setChatType: React.Dispatch<React.SetStateAction<string>>;
+    webSearch: boolean;
+    setWebSearch: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);

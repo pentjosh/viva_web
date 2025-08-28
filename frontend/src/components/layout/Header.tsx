@@ -40,11 +40,22 @@ const Header = ({isSideBarOpen, onToggle}:HeaderProps) => {
                 </div>
             </div>
             <div className="flex items-center gap-2">
-                <div className="flex">
+                {/* <div className="flex tooltip tooltip-bottom" data-tip="Change theme">
                     <button className="btn btn-ghost btn-circle" onClick={ toggleTheme }>
                         { theme === 'red-dark' ? <Sun size={24} /> : <SunMoon size={24} /> }
                     </button>
-                </div>
+                </div> */}
+
+                { theme === "red-dark" ? (
+                    <div className="flex tooltip tooltip-bottom" data-tip="Switch to light">
+                        <button className="btn btn-ghost btn-circle" onClick={ toggleTheme }><Sun size={24} /></button>
+                    </div>
+                ):(
+                    <div className="flex tooltip tooltip-bottom" data-tip="Switch to dark">
+                        <button className="btn btn-ghost btn-circle" onClick={ toggleTheme }><SunMoon size={24} /></button>
+                    </div>
+                )
+                 }
                 <div className="flex">
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">

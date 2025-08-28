@@ -9,7 +9,7 @@ const ChatTypeSelection = ({ value, onChange }:ChatTypeSelectionProps) => {
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         onChange(e.target.value);
         console.log(e.target.value);
-    }
+    };
 
     return (
         <>

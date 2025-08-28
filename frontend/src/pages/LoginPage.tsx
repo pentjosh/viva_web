@@ -43,7 +43,7 @@ const LoginPage = () => {
         </div>
         <div className="min-h-screen flex flex-col justify-center items-center">
             <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary to-orange-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-xl">
+                <div className="absolute inset-0 bg-gradient-to-tr from-red-700 to-orange-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-xl">
                 </div>
                 <div className="relative px-4 py-10 shadow-lg rounded-xl sm:p-10 bg-base-100">
                     <form onSubmit={handleLogin}>
