@@ -16,8 +16,6 @@ async def generate_chat(request: ChatRequest, user = Depends(get_current_user)) 
                         chat_type = request.chat_type,
                         file_ids = request.file_ids,
                         web_search = request.web_search);
-    
-    print(request.web_search);
     if not chat:
         raise HTTPException(status_code=500, detail="An error occurred while processing your request.");
     return chat;

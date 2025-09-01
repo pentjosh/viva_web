@@ -11151,3 +11151,63 @@ content
 2025-08-28 10:40:16,692 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
 2025-08-28 10:40:16,704 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
 2025-09-01 10:24:42,943 - app_logger - ERROR - Error generating chat : GENERAL
+2025-09-01 11:05:15,934 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=<coroutine object get_res...e at 0x000001FE0E074760>, input_type=coroutine]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-09-01 11:05:38,462 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=<coroutine object get_res...e at 0x000001FE0E074760>, input_type=coroutine]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-09-01 11:06:58,068 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=<coroutine object get_res...e at 0x0000023344AE0760>, input_type=coroutine]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-09-01 13:50:49,260 - app_logger - ERROR - Error calling generative model: too many values to unpack (expected 2)
+2025-09-01 13:50:49,265 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-09-01 13:53:15,215 - app_logger - ERROR - Error calling generative model: too many values to unpack (expected 2)
+2025-09-01 13:53:15,222 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-09-01 14:03:10,652 - app_logger - ERROR - Error calling generative model: too many values to unpack (expected 2)
+2025-09-01 14:03:10,652 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-09-01 14:41:00,940 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-09-01 14:42:30,510 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-09-01 14:56:27,327 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-09-01 15:03:02,866 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-09-01 15:03:27,071 - app_logger - ERROR - Error generating chat : can only concatenate str (not "list") to str
+2025-09-01 15:09:01,427 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-09-01 15:10:17,840 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-09-01 15:11:51,597 - app_logger - ERROR - Error generating chat : can only concatenate str (not "list") to str
+2025-09-01 15:12:21,099 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-09-01 15:41:44,987 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-09-01 15:41:56,336 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-09-01 15:41:56,339 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>

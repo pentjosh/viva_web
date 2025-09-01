@@ -21,6 +21,7 @@ from google.api_core.client_options import ClientOptions;
 from google.cloud import documentai;
 from utils.env import ( GOOGLE_PROJECT_ID );
 from langchain_text_splitters import RecursiveCharacterTextSplitter;
+from collections import defaultdict
    
 processor_location = "us";
 processor_id = "bc10c236807ccdf0";
@@ -151,7 +152,7 @@ async def delete_file_from_storage(user_id: UUID, file_id: UUID, extension: str)
         
 async def cleanup_file_embedded(file_id: UUID, user_id: UUID):
     with get_db_context() as db:
-        db.query(FilesEmbedded).filter(FilesEmbedded.files_id == file_id, FilesEmbedded.user_id == user_id).delete();
+        db.query(FilesEmbedded).filter(FilesEmbedded.file_id == file_id, FilesEmbedded.user_id == user_id).delete();
         db.commit();
 
 async def upload_save_file(file_id: UUID, user_id: UUID, sanitized_filename: str, filehash: str, fileext: str, 
@@ -232,7 +233,7 @@ async def save_file_embedded(file_id: UUID, user_id: UUID, content: str, content
         with get_db_context() as db:
             new_file_embedded = FilesEmbedded(
                 id = uuid.uuid4(),
-                files_id = file_id,
+                file_id = file_id,
                 user_id = user_id,
                 content = content,
                 content_type = content_type,
@@ -366,3 +367,23 @@ async def process_file_to_embed(file_id: UUID, user_id: UUID):
         return;
 
 
+async def retrieve_files_content(user_id: UUID, file_ids: List[UUID]):
+    with get_db_context() as db:
+        files = (db.query(Files.name, FilesEmbedded.content, FilesEmbedded.content_type)
+        .join(FilesEmbedded, Files.id == FilesEmbedded.file_id)
+        .filter(Files.id.in_(file_ids), Files.user_id == user_id)
+        .all());
+        #print(files)
+        agregrated_rows = defaultdict(str);
+        for name, content, content_type in files:
+            agregrated_rows[name] += content + "\n";
+        
+        final_output = [];
+        
+        for file_name, contents in agregrated_rows.items():
+            final_output.append({
+                "file_name": file_name,
+                "content": contents
+            });
+        
+        return final_output;

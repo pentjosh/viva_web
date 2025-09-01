@@ -42,7 +42,7 @@ class ContentType(enum.Enum):
 class FilesEmbedded(Base):
     __tablename__ = "files_embedded";
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4);
-    files_id = Column(UUID(as_uuid=True), ForeignKey("files.id", ondelete="CASCADE"));
+    file_id = Column(UUID(as_uuid=True), ForeignKey("files.id", ondelete="CASCADE"));
     user_id = Column(UUID(as_uuid=True), ForeignKey("auths.id", ondelete="CASCADE"));
     content = Column(Text, nullable=False);
     vector = Column(Vector(3072));
@@ -53,7 +53,7 @@ class FilesEmbedded(Base):
 class FilesEmbeddedModel(BaseModel):
     model_config = ConfigDict(from_attributes=True);
     id: uuid.UUID;
-    files_id: uuid.UUID;
+    file_id: uuid.UUID;
     user_id: uuid.UUID;
     content: str;
     vector: List[float];
