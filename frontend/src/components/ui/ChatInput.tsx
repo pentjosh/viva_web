@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { Send, Mic, Square, Paperclip, X, Globe } from 'lucide-react';
 import useAutosizeTextArea from '../hooks/useAutoSizeTextArea';
 import { useAudioRecorder } from '../hooks/useAudioRecord';
@@ -66,9 +66,9 @@ export const ChatInput = ({onSend, isSending}:ChatInputProps)=> {
         setWebSearch(e.target.checked);
     };
 
-    useEffect(() => {
-        console.log(webSearch)
-    }, [webSearch]);
+    // useEffect(() => {
+    //     console.log(webSearch)
+    // }, [webSearch]);
 
     const handleRemoveFile = (fileid: string) => {
         setAttachedFiles(prev => prev.filter(file => file.id !== fileid));

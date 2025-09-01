@@ -1,4 +1,4 @@
-import { Copy, ChevronLeft, ChevronRight} from 'lucide-react';
+import { Copy, ChevronLeft, ChevronRight, ChevronUp, ChevronDown } from 'lucide-react';
 import { FileType } from '../../api/files/types';
 import { FileIcon, defaultStyles } from 'react-file-icon';
 import { useEffect, useState, useRef } from 'react';
@@ -12,6 +12,10 @@ export const UserChatBubble = ({message, files}:UserChatBubbleProps) => {
     const [showLeftArrow, setShowLeftArrow] = useState(false);
     const [showRightArrow, setShowRightArrow] = useState(false);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    const maxUserTextLength = 300;
+    const [isExpanded, setIsExpanded] = useState(false);
+    const isLongMessage = message && message.length > maxUserTextLength;
 
     const handleCopy = () => {
         if(!message) return
@@ -60,6 +64,11 @@ export const UserChatBubble = ({message, files}:UserChatBubbleProps) => {
         }
     };
 
+    useEffect(()=> {
+        console.log("Is long message : " + isLongMessage);
+        console.log("Expand :" + isExpanded);
+    },[isLongMessage, isExpanded])
+
     return (
         <div className="flex flex-col w-full items-end gap-1">
             {files && files.length > 0 && (
@@ -91,8 +100,20 @@ export const UserChatBubble = ({message, files}:UserChatBubbleProps) => {
             {message && (
             <div className="flex group max-w-2xl">
                 <div className="flex flex-col gap-1">
-                    <div className="bg-base-200 border border-base-content/20 rounded-xl px-4 py-2.5 break-words text-sm prose prose-sm whitespace-break-spaces shadow-xs">
-                        {message}
+                    <div className="relative bg-base-200 border border-base-content/10 rounded-bl-2xl rounded-br-2xl rounded-tl-2xl px-4 py-2.5 break-words text-sm prose prose-sm whitespace-break-spaces shadow-xs">
+                        {/* {message} */}
+                        {/* {isLongMessage && !isExpanded ? `${message.substring(0, maxUserTextLength)}...` : message} */}
+                        <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'max-h-auto' : 'max-h-16'}`}>
+                            {message}
+                        </div>
+                        {isLongMessage && (
+                            <button 
+                                onClick={() => setIsExpanded(!isExpanded)} 
+                                className="absolute top-1 right-1 btn btn-ghost btn-circle btn-xs p-1 z-10"
+                            >
+                                {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                            </button>
+                        )}
                     </div>
                     <div className="flex justify-end">
                         <button onClick={handleCopy} className="flex items-center justify-center p-1 bg-base-200 rounded-lg invisible group-hover:visible 
