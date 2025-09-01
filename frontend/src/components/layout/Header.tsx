@@ -25,7 +25,7 @@ const Header = ({isSideBarOpen, onToggle}:HeaderProps) => {
 
     return(
     <>
-        <header className="flex items-center justify-between bg-transparent h-16 p-3">
+        <header className="flex items-center justify-between bg-transparent h-12 px-3 py-1">
             <div className="flex items-center gap-10 overflow-hidden">
                 <div className="flex items-center">
                     {!isSideBarOpen && 

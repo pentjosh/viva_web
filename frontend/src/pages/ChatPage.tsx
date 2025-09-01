@@ -33,7 +33,7 @@ const ChatPage = () => {
         <Layout>
             <div className="relative shrink flex flex-col h-full max-w-4xl mx-auto w-full">
                 {!isChatTypeSelectionShouldHide && (<ChatTypeSelection value = {chatType} onChange={setChatType} />)}
-                <div className="h-10" />
+                {/* <div className="h-10" /> */}
                 <ChatHistory ref={chatContainerRef} chatList={chatList} isTyping={isTyping} streamedMessage={streamedMessage}/>
                 <ChatInput onSend={sendMessage} isSending={isTyping} />
             </div>
