@@ -113,7 +113,7 @@ export const ChatInput = ({onSend, isSending}:ChatInputProps)=> {
                             </button>
                         </div>
                         <div className="flex items-center">
-                            <input type="checkbox" id="webSearchBtn" className="peer" checked={webSearch} onChange={handleWebSearch} />
+                            <input type="checkbox" id="webSearchBtn" className="peer hidden" checked={webSearch} onChange={handleWebSearch} />
                             <label htmlFor="webSearchBtn" className="btn btn-ghost flex items-center gap-2 p-2 cursor-pointer rounded-lg transition-colors duration-200
                             ease-in-out peer-checked:text-info border peer-checked:border-base-content/20 peer-checked:bg-transparent"><Globe size="20" />Web Search</label>
                         </div>

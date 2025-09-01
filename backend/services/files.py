@@ -19,16 +19,12 @@ from google import genai;
 from google.genai.types import EmbedContentConfig;
 from google.api_core.client_options import ClientOptions;
 from google.cloud import documentai;
-from utils.env import (GOOGLE_VERTEX_CREDENTIAL);
+from utils.env import ( GOOGLE_PROJECT_ID );
 from langchain_text_splitters import RecursiveCharacterTextSplitter;
-
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GOOGLE_VERTEX_CREDENTIAL;
-with open(GOOGLE_VERTEX_CREDENTIAL) as file:
-    credentials = json.load(file);
-    
+   
 processor_location = "us";
 processor_id = "bc10c236807ccdf0";
-project_id = credentials["project_id"];
+project_id = GOOGLE_PROJECT_ID;
 location = "us-central1";
 
 premium_features = documentai.OcrConfig.PremiumFeatures(

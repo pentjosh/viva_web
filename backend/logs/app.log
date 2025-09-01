@@ -11150,3 +11150,4 @@ content
 2025-08-28 10:40:07,607 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
 2025-08-28 10:40:16,692 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
 2025-08-28 10:40:16,704 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-09-01 10:24:42,943 - app_logger - ERROR - Error generating chat : GENERAL

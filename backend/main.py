@@ -12,7 +12,6 @@ from utils.scheduler  import scheduler;
 @asynccontextmanager
 async def lifespan(app:FastAPI):
     init_db();
-    
     os.makedirs(LOG_DIR, exist_ok=True);
     os.makedirs(MEDIA_DIR, exist_ok=True);
     scheduler.start();

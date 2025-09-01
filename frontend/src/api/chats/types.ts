@@ -5,7 +5,7 @@ export interface ChatMessage {
     content: string;
     files?: FileType[];
     timestamp: string;
-}
+};
 
 export interface ChatModel {
     id: string; 
@@ -13,11 +13,12 @@ export interface ChatModel {
     title: string;
     messages: ChatMessage[];
     type?: string;
+    websearch?: boolean;
     created_at?: string;
     updated_at?: string;
     // archived: boolean;
     // pinned?: boolean;
-}
+};
 
 export type ChatList = {
     role: 'user' | 'model';

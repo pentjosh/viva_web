@@ -38,3 +38,4 @@ with open(GOOGLE_VERTEX_CREDENTIAL, "r") as f:
     project_id = data["project_id"];
 
 GOOGLE_PROJECT_ID = project_id;
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GOOGLE_VERTEX_CREDENTIAL;

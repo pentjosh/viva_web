@@ -21,15 +21,13 @@ from google.genai.types import (
     HarmBlockThreshold,
     ThinkingConfig,
     Part,
-    Content
+    Content,
+    GoogleSearch,
+    Tool
 );
 import os;
 import json;
 from services.files import get_files_by_ids;
-
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GOOGLE_VERTEX_CREDENTIAL;
-with open(GOOGLE_VERTEX_CREDENTIAL) as file:
-    credentials = json.load(file);
 
 system_instruction = """
 Your role is to serve as an informative and helpful AI assistant, with a strict and non-negotiable limitation:
@@ -81,18 +79,19 @@ safety_settings = [
         threshold=HarmBlockThreshold.BLOCK_NONE,
     ),
 ];
+google_search_tool = Tool(google_search=GoogleSearch())
 
 client = genai.Client(
-    vertexai=True,
-    project=credentials["project_id"],
-    location=GOOGLE_VERTEX_LOCATION
+    vertexai = True,
+    project = GOOGLE_PROJECT_ID,
+    location = GOOGLE_VERTEX_LOCATION
 );
 
-content_config = GenerateContentConfig(
-    system_instruction=system_instruction,
-    safety_settings=safety_settings,
-    thinking_config=ThinkingConfig(include_thoughts=False,thinking_budget=128)
-);
+# content_config = GenerateContentConfig(
+#     system_instruction=system_instruction,
+#     safety_settings=safety_settings,
+#     thinking_config=ThinkingConfig(include_thoughts=False,thinking_budget=128)
+# );
 
 def generate_chat_title(messages: list)-> str:
     history = "\n".join(f"{m['role'].capitalize()}: {m['content']}" for m in messages[:5]);
@@ -124,12 +123,18 @@ async def get_model_response(chat_history: list) -> str:
         messages = [
             Content(role=msg['role'], parts=[Part.from_text(text=msg['content'])]) for msg in chat_history
         ];
+        
+        content_config = GenerateContentConfig(
+            system_instruction=system_instruction,
+            safety_settings=safety_settings,
+            thinking_config=ThinkingConfig(include_thoughts=False,thinking_budget=128)
+        );
 
         response = client.models.generate_content(
             model=GOOGLE_CHAT_MODEL,
             contents=messages,
             config=content_config            
-            );
+        );
         
         if not response or not response.text:
             logger.erroe("Received an empty or blocked response from the generative model.");
@@ -141,6 +146,38 @@ async def get_model_response(chat_history: list) -> str:
         print(str(e));
         return None;
 
+def get_response_general_type(chat_history: list, web_search: bool) -> str:
+    if not chat_history:
+        return None;
+    
+    try:
+        messages = [
+            Content(role=msg['role'], parts=[Part.from_text(text=msg['content'])]) for msg in chat_history
+        ];
+        
+        content_config = GenerateContentConfig(
+            temperature=2,
+            system_instruction=system_instruction,
+            safety_settings=safety_settings,
+            thinking_config=ThinkingConfig(include_thoughts=False,thinking_budget=128),
+            tools=[google_search_tool] if web_search else []
+        );
+
+        response = client.models.generate_content(
+            model=GOOGLE_CHAT_MODEL,
+            contents=messages,
+            config=content_config            
+        );
+        
+        if not response or not response.text:
+            logger.erroe("Received an empty or blocked response from the generative model.");
+            return None;
+        
+        return response.text;
+    except Exception as e:
+        logger.error(f"Error calling generative model: {e}");
+        print(str(e));
+        return None;
 
 def insert_update_chat(user_id: UUID, user_message: UserMessage, model_message: ModelMessage, chat_type: ChatType, chat: Chat=None) :
     with get_db_context() as db:
@@ -178,9 +215,9 @@ def get_chat_by_id(chat_id: UUID, user_id: UUID) -> Optional[ChatResponse]:
         logger.warning(str(e));
         return None;
 
-async def chat_handler(user_id: UUID, content: str, chat_type: Optional[ChatType] = None, chat_id: Optional[UUID] = None, file_ids: List[UUID] = None) -> Optional[ChatResponse]:
+async def chat_handler(user_id: UUID, content: str, chat_type: Optional[ChatType] = None, chat_id: Optional[UUID] = None, 
+                       file_ids: List[UUID] = None, web_search: Optional[bool] = False) -> Optional[ChatResponse]:
     try:
-        
         user_files = [];
         if file_ids:
             user_files = await get_files_by_ids(file_ids=file_ids, user_id=user_id);
@@ -204,7 +241,12 @@ async def chat_handler(user_id: UUID, content: str, chat_type: Optional[ChatType
         
         chat_history_to_model = chat_history + [user_message.model_dump(mode="json")];
         
-        model_response_text = await get_model_response(chat_history_to_model);
+        model_response_text: str = "";
+        print(chat_type)
+        if chat_type == ChatType.general:
+            model_response_text = get_response_general_type(chat_history_to_model, web_search);
+        
+        # model_response_text = await get_model_response(chat_history_to_model);
                
         model_message = ModelMessage(role="model", content=model_response_text);
         

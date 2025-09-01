@@ -5,9 +5,9 @@ import { FileType } from "../files/types"
 //const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 export const page_size = 20;
 
-export const generateChat = async (content: string, chat_id: string | null, files: FileType[], chat_type: string): Promise<ChatModel> => {
+export const generateChat = async (content: string, chat_id: string | null, files: FileType[], chat_type: string, web_search: boolean): Promise<ChatModel> => {
     const file_ids = files.map(file => file.id);
-    const chatPayload = { content: content, chat_id: chat_id, file_ids: file_ids, chat_type: chat_type};
+    const chatPayload = { content: content, chat_id: chat_id, file_ids: file_ids, chat_type: chat_type, web_search : web_search};
 
     try {
         const response = await fetch(`${BASE_URL}/api/chat/generate`, {

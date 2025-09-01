@@ -55,6 +55,7 @@ class ChatRequest(BaseModel):
     chat_id: Optional[uuid.UUID] = None;
     file_ids: Optional[List[uuid.UUID]] = Field(default_factory=list);
     chat_type: Optional[ChatType] = None;
+    web_search: Optional[bool] = False;
     
 class ChatSummary(BaseModel):
     id: uuid.UUID;

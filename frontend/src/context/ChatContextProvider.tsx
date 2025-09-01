@@ -131,7 +131,7 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
         setStreamedMessage('');
 
         try {
-            const response = await generateChat(userMessage, chatID, files, chatType);
+            const response = await generateChat(userMessage, chatID, files, chatType, webSearch);
             
             if (response && response.messages) {
                 setChatID(response.id);
