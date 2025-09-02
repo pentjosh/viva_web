@@ -3,7 +3,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 interface MarkdownRendererProps {
   children: string;
@@ -22,7 +22,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ children }) => {
             return (
               <SyntaxHighlighter
                 // @ts-expect-error Theme style not matching React.CSSProperties, but this is correct usage
-                style={dracula}
+                style={docco}
                 PreTag="div"
                 language={match[1]}
                 {...props}

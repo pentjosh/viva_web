@@ -1,7 +1,6 @@
 import { Copy } from 'lucide-react';
 import React from 'react';
-//import Markdown from 'react-markdown';
-import MarkdownRenderer from '../ui/MarkdownRenderer';
+import ReactMarkdown from 'react-markdown';
 //import remarkGfm from "remark-gfm";
 
 interface BotChatBubleProps {
@@ -34,7 +33,7 @@ export const BotChatBubble = ({message}:BotChatBubleProps) => {
             <div className="flex flex-col max-w-full group">
                 <div className="flex">
                     <div className="prose prose-sm whitespace-break-spaces break-words overflow-x-auto text-sm" ref={bubbleRef}>
-                        <MarkdownRenderer>{String(message).replace(/(\[.*?\])/g, "$1\n")}</MarkdownRenderer>
+                       <ReactMarkdown>{String(message).replace(/(\[.*?\])/g, "$1\n")}</ReactMarkdown>
                     </div>
                 </div>
                 <div className="flex px-2">

@@ -11211,3 +11211,13 @@ content
 2025-09-01 15:41:44,987 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
 2025-09-01 15:41:56,336 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
 2025-09-01 15:41:56,339 - app_logger - WARNING - <class 'jose.exceptions.JWTError'>
+2025-09-02 17:26:49,006 - app_logger - ERROR - Error calling generative model: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': "Permission 'discoveryengine.servingConfigs.search' denied on resource '//discoveryengine.googleapis.com/projects/athena-ca-prototype/locations/us/collections/default_collection/dataStores/ca-audit-prosedur-lha-tada/servingConfigs/default_search' (or it may not exist).", 'status': 'PERMISSION_DENIED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'IAM_PERMISSION_DENIED', 'domain': 'discoveryengine.googleapis.com', 'metadata': {'resource': 'projects/athena-ca-prototype/locations/us/collections/default_collection/dataStores/ca-audit-prosedur-lha-tada/servingConfigs/default_search', 'permission': 'discoveryengine.servingConfigs.search'}}]}}
+2025-09-02 17:26:49,006 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-09-02 17:34:13,232 - app_logger - ERROR - Error calling generative model: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': "Permission 'discoveryengine.servingConfigs.search' denied on resource '//discoveryengine.googleapis.com/projects/athena-ca-prototype/locations/us/collections/default_collection/dataStores/ca-audit-prosedur-lha-tada/servingConfigs/default_search' (or it may not exist).", 'status': 'PERMISSION_DENIED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'IAM_PERMISSION_DENIED', 'domain': 'discoveryengine.googleapis.com', 'metadata': {'permission': 'discoveryengine.servingConfigs.search', 'resource': 'projects/athena-ca-prototype/locations/us/collections/default_collection/dataStores/ca-audit-prosedur-lha-tada/servingConfigs/default_search'}}]}}
+2025-09-02 17:34:13,232 - app_logger - ERROR - Error generating chat : 1 validation error for ModelMessage
+content
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
