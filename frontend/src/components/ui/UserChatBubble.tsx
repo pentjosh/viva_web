@@ -116,9 +116,9 @@ export const UserChatBubble = ({message, files}:UserChatBubbleProps) => {
                         )}
                     </div>
                     <div className="flex justify-end">
-                        <button onClick={handleCopy} className="flex items-center justify-center p-1 bg-base-200 rounded-lg invisible group-hover:visible 
+                        <button onClick={handleCopy} className="flex items-center justify-center p-1.25 bg-base-200 rounded-lg invisible group-hover:visible 
                         transition-opacity duration-200 hover:bg-base-300 tooltip tooltip-bottom cursor-pointer" data-tip="Copy" tabIndex={-1} type="button">
-                            <Copy size={12} />
+                            <Copy size={13} />
                         </button>
                     </div>
                 </div>

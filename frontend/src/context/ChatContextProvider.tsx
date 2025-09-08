@@ -144,18 +144,19 @@ export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ childre
                 const botMessageContent = response.messages[response.messages.length - 1].content;
                 
                 let i = 0;
+                const chunkSize = 10;
                 if (typingInterval.current) clearInterval(typingInterval.current);
 
                 typingInterval.current = setInterval(() => {
-                    setStreamedMessage(botMessageContent.slice(0, i + 1));
-                    i++;
+                    setStreamedMessage(botMessageContent.slice(0, i + chunkSize));
+                    i += chunkSize;
                     if (i >= botMessageContent.length) {
                         clearInterval(typingInterval.current!);
                         setIsTyping(false);
                         setChatList(response.messages.map(msg => ({ role: msg.role, message: msg.content, files: msg.files })));
                         setStreamedMessage('');
                     }
-                }, 5);
+                }, 10);
             }
         }
         catch (error) {

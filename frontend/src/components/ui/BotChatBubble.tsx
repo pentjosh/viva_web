@@ -33,13 +33,14 @@ export const BotChatBubble = ({message}:BotChatBubleProps) => {
             <div className="flex flex-col max-w-full group">
                 <div className="flex">
                     <div className="prose prose-sm whitespace-break-spaces break-words overflow-x-auto text-sm" ref={bubbleRef}>
-                       <ReactMarkdown>{String(message).replace(/(\[.*?\])/g, "$1\n")}</ReactMarkdown>ver
+                       {/* <ReactMarkdown>{String(message).replace(/(\[.*?\])/g, "$1\n")}</ReactMarkdown> */}
+                        <ReactMarkdown>{String(message)}</ReactMarkdown>
                     </div>
                 </div>
-                <div className="flex px-2">
-                    <button onClick={handleCopy} className="flex items-center justify-center p-2 rounded-lg hover:bg-base-300 invisible group-hover:visible
+                <div className="flex justify-end">
+                    <button onClick={handleCopy} className="flex items-center justify-center p-1.25 rounded-lg hover:bg-base-300 invisible group-hover:visible
                     transition-opacity duration-200 cursor-pointer tooltip tooltip-top" tabIndex={-1} data-tip="Copy" type="button">
-                        <Copy size={16} />
+                        <Copy size={14} />
                     </button>
                 </div>
             </div>

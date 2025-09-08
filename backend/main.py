@@ -8,7 +8,6 @@ from pathlib import Path;
 from utils.env import BASE_DIR, LOG_DIR, MEDIA_DIR;
 from contextlib import asynccontextmanager;
 from utils.scheduler  import scheduler;
-import socket;
 
 @asynccontextmanager
 async def lifespan(app:FastAPI):
@@ -23,9 +22,7 @@ app = FastAPI(lifespan=lifespan);
 
 load_routers(app, "routers");
 
-local_ip = socket.gethostbyname(socket.gethostname());
-
-origins = ["http://localhost:5172","http://127.0.0.1:5172","http://0.0.0.0:5172",f"http://{local_ip}:5172"];
+origins = ["http://localhost:5172","http://127.0.0.1:5172","http://0.0.0.0:5172"];
 
 app.add_middleware(
     CORSMiddleware,
