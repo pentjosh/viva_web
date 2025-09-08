@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.12",
+    "daisyui": "^5.0.43",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.542.0",
     "react": "^19.1.1",
@@ -18,8 +20,6 @@
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.8.2",
     "react-toastify": "~11.0.5",
-    "@tailwindcss/vite": "^4.1.12",
-    "daisyui": "^5.1.6",
     "tailwindcss": "^4.1.12"
   },
   "devDependencies": {
