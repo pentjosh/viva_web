@@ -27,7 +27,8 @@ export const ChatHistory = React.forwardRef<HTMLDivElement, ChatHistoryProps>(({
                                 <BotChatBubble key={idx} message={item.message} />
                             )
                         )}
-                        {isTyping && !streamedMessage && (<div className="p-2"><BotThinking /></div>)}
+                        {isTyping && !streamedMessage && (<div className="p-1"><BotThinking /></div>)}
+                        {/* <div className="p-1"><BotThinking /></div> */}
                         {streamedMessage && <BotChatBubble message={streamedMessage} />}
                     </div>
                 </>
