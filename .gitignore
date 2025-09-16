@@ -1,4 +1,4 @@
 backend/assets/athena-ca-prototype-93859487e9a4.json
-media/
-__pycache__/
-logs/
+backend/media/
+backend/__pycache__/
+backend/logs/
